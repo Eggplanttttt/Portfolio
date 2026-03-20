@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Ezekiel R. Cadiz</title>
+</head>
+<body>
+    <header class="site-header">
+        <a href="#" class="brand">Ezekiel Cadiz</a>
+        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="site-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="menu-overlay" id="site-menu" aria-hidden="true">
+        <div class="menu-overlay__backdrop"></div>
+        <nav class="menu-panel" aria-label="Site navigation">
+            <a href="#home" class="menu-link">Home</a>
+            <a href="#skills" class="menu-link">Skills</a>
+            <a href="#works" class="menu-link">Works</a>
+            <a href="#contact" class="menu-link">Contact</a>
+        </nav>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="greeting">What's up!</p>
+            <h1 class="name">I am Ezekiel R. Cadiz</h1>
+            <h2 class="tagline">
+                <span class="tagline-text" aria-live="polite"></span>
+            </h2>
+
+            <div class="socials">
+                <a href="https://github.com/Eggplanttttt" target="_blank" class="social-btn github-btn" aria-label="GitHub">
+                    <img src="assets/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.instagram.com/egg_plant.ph/?hl=en" target="_blank" class="social-btn instagram-btn" aria-label="Instagram">
+                    <img src="assets/instagram.png" alt="Instagram">
+                </a>
+            </div>
+
+            <div class="buttons">
+                <a href="assets/CSV.pdf" target="_blank" class="btn-outline resume-btn">Resume</a>
+                <a href="https://www.instagram.com/egg_plant.ph/?hl=en" target="_blank" class="btn-primary">Let's Talk</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="assets/profile2.1.png" alt="Ezekiel Cadiz portrait">
+        </div>
+    </section>
+
+    <section class="scroll-stage" aria-label="Portfolio scroll animation">
+        <div class="scroll-stage__sticky">
+            <div class="paint-canvas">
+                <div class="paint-stroke paint-stroke-one"></div>
+                <div class="paint-stroke paint-stroke-two"></div>
+                <div class="paint-stroke paint-stroke-three"></div>
+                <div class="paint-stroke paint-stroke-four"></div>
+            </div>
+
+            <div class="paint-scene">
+                <p class="scene-kicker">Paint Transition</p>
+                <h3>I turn ideas into reliable digital systems through clean code and thoughtful design.</h3>
+                <p>
+                   I turn ideas into reliable digital systems through clean code and thoughtful design.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="next-section" id="skills">
+        <div class="next-section__content">
+            <div class="skills-intro">
+                <p>
+                    I build <span>full stack systems </span>with
+                    <span>Laravel</span> and <span>modern web technologies</span>, focusing on <span>secure </span>,
+                    updated <span>user-centered solutions</span>.
+                </p>
+            </div>
+
+            <div class="skills-groups">
+                <div class="skills-group skills-group-wide">
+                    <h3>Frontend Development</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <img src="assets/html5.svg" alt="HTML">
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/css3.svg" alt="CSS">
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/js.svg" alt="JavaScript">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-row">
+                    <div class="skills-group">
+                        <h3>User Interface</h3>
+                        <div class="skills-grid skills-grid-small">
+                            <div class="skill-card">
+                                <img src="assets/figma.svg" alt="Figma">
+                            </div>
+                            <div class="skill-card">
+                                <img src="assets/canva.svg" alt="Canva">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-group">
+                        <h3>Other Skills</h3>
+                        <div class="skills-grid skills-grid-small">
+                            <div class="skill-card">
+                                <img src="assets/git.svg" alt="Git">
+                            </div>
+                            <div class="skill-card">
+                                <img src="assets/railway.png" alt="Railway">
+                            </div>
+                            <div class="skill-card">
+                                <img src="assets/resend.svg" alt="Resend">
+                            </div>
+                            <div class="skill-card">
+                                <img src="assets/VB.NET.svg" alt="OOP VB.NET">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h3>Frameworks</h3>
+                    <div class="skills-grid skills-grid-small">
+                        <div class="skill-card">
+                            <img src="assets/laravel.svg" alt="Laravel">
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/bootstrap.svg" alt="Bootstrap">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h3>Backend Development</h3>
+                    <div class="skills-grid skills-grid-small">
+                        <div class="skill-card">
+                            <img src="assets/mysql.svg" alt="MySQL">
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/php.svg" alt="PHP">
+                        </div>
+                        <div class="skill-card">
+                            <img src="assets/mysqlworkbench.svg" alt="MySQL Workbench">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="works-fold-section" aria-label="My works intro">
+        <div class="works-fold-screen">
+            <div class="works-fold-3d">
+                <div class="works-fold works-fold-top">
+                    <div class="works-fold-align">
+                        <div class="works-fold-content">
+                            <div class="works-marquee">
+                                <div class="works-track">
+                                    <span>My Works.</span><span class="works-focus">My Works.</span><span>My Works.</span><span>My Works.</span><span>My Works.</span><span>My Works.</span>
+                                </div>
+                            </div>
+                            <div class="works-marquee">
+                                <div class="works-track works-track-reverse">
+                                    <span>Full Stack.</span><span class="works-focus">Full Stack.</span><span>Full Stack.</span><span>Full Stack.</span><span>Full Stack.</span><span>Full Stack.</span>
+                                </div>
+                            </div>
+                            <div class="works-marquee">
+                                <div class="works-track">
+                                    <span>Web Apps.</span><span class="works-focus">Web Apps.</span><span>Web Apps.</span><span>Web Apps.</span><span>Web Apps.</span><span>Web Apps.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="works-fold works-fold-center">
+                    <div class="works-fold-align">
+                        <div class="works-fold-content works-fold-center-content">
+                            <p class="works-label">Projects</p>
+                            <h2>My Works</h2>
+                            <p class="works-description">
+                                I have independently built many full-stack projects, handling the frontend,
+                                backend, APIs, security, database, and modern best practices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="works-fold works-fold-bottom">
+                    <div class="works-fold-align">
+                        <div class="works-fold-content">
+                            <div class="works-marquee">
+                                <div class="works-track">
+                                    <span>Laravel.</span><span class="works-focus">Laravel.</span><span>Laravel.</span><span>Laravel.</span><span>Laravel.</span><span>Laravel.</span>
+                                </div>
+                            </div>
+                            <div class="works-marquee">
+                                <div class="works-track works-track-reverse">
+                                    <span>PHP.</span><span class="works-focus">PHP.</span><span>PHP.</span><span>PHP.</span><span>PHP.</span><span>PHP.</span>
+                                </div>
+                            </div>
+                            <div class="works-marquee">
+                                <div class="works-track">
+                                    <span>Projects.</span><span class="works-focus">Projects.</span><span>Projects.</span><span>Projects.</span><span>Projects.</span><span>Projects.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-showcase" id="works" aria-label="Project cards">
+        <div class="projects-showcase__intro">
+            <p class="projects-label">Projects</p>
+            <h2>My Works</h2>
+            <p>
+                I have independently built many <span>full-stack</span> projects, handling the
+                <span>frontend</span>, <span>backend</span>, <span>APIs</span>, <span>security</span>,
+                <span>database</span>, and <span>modern best practices</span>.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <a href="https://e-pacd.online/" target="_blank" rel="noopener noreferrer" class="project-card-link" data-project-link="https://e-pacd.online/" aria-label="Open E-PACD project">
+                <article class="project-card project-card-dark">
+                    <div class="project-card__bg"></div>
+                    <div class="project-card__glow"></div>
+                    <div class="project-card__stack">
+                        <img src="assets/php.svg" alt="PHP">
+                        <img src="assets/laravel.svg" alt="Laravel">
+                        <img src="assets/resend.svg" alt="Resend">
+                        <img src="assets/railway.png" alt="Railway">
+                    </div>
+                    <div class="project-card__mockup project-card__mockup-image">
+                        <img src="assets/e-pacd.png" alt="E-PACD project preview">
+                    </div>
+                    <div class="project-card__body">
+                        <h3>E-PACD - Electronic Public Assistance and Complaint Desk [Thesis]</h3>
+                        <p>A full-stack public service platform with complaint handling, email workflows, and modern deployment.</p>
+                    </div>
+                </article>
+            </a>
+        </div>
+    </section>
+
+    <section class="collaborate-marquee-section" aria-label="Collaboration marquee">
+        <div class="collaborate-marquee-section__sticky">
+            <div class="collaborate-marquee-section__bg" aria-hidden="true">
+                <div class="collaborate-row">
+                    <div class="collaborate-row__band">
+                        <div class="collaborate-row__track">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                        <div class="collaborate-row__track" aria-hidden="true">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="collaborate-row collaborate-row--reverse">
+                    <div class="collaborate-row__band">
+                        <div class="collaborate-row__track">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                        <div class="collaborate-row__track" aria-hidden="true">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="collaborate-row">
+                    <div class="collaborate-row__band">
+                        <div class="collaborate-row__track">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                        <div class="collaborate-row__track" aria-hidden="true">
+                           <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="collaborate-row collaborate-row--reverse">
+                    <div class="collaborate-row__band">
+                        <div class="collaborate-row__track">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                        <div class="collaborate-row__track" aria-hidden="true">
+                            <span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span><span>Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collaborate-marquee-section__content">
+                <h2 class="collaborate-marquee-title" data-text="Please Collaborate with me :)">
+                    Please Collaborate with me :)
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="collaborate-section" id="contact" aria-label="Collaboration call to action">
+        <div class="collaborate-section__sticky">
+            <div class="collaborate-section__bg" aria-hidden="true">
+                <div class="collaborate-blob collaborate-blob-one"></div>
+                <div class="collaborate-blob collaborate-blob-two"></div>
+                <div class="collaborate-blob collaborate-blob-three"></div>
+                <div class="collaborate-blob collaborate-blob-four"></div>
+                <div class="collaborate-orb collaborate-orb-one"></div>
+                <div class="collaborate-orb collaborate-orb-two"></div>
+            </div>
+
+            <div class="collaborate-section__content">
+                <p class="collaborate-kicker">Let&apos;s Connect</p>
+                <div class="collaborate-counter">
+                    <strong>Open</strong>
+                    <span>for freelance and collaboration</span>
+                </div>
+                <h2 class="collaborate-title">
+                    Connect with me on social media.
+                </h2>
+                <div class="collaborate-socials">
+                    <a href="https://github.com/Eggplanttttt" target="_blank" rel="noopener noreferrer" class="collaborate-social-btn" aria-label="GitHub">
+                        <img src="assets/github.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.instagram.com/egg_plant.ph/?hl=en" target="_blank" rel="noopener noreferrer" class="collaborate-social-btn" aria-label="Instagram">
+                        <img src="assets/instagram.png" alt="Instagram">
+                    </a>
+                </div>
+                <p class="collaborate-email">
+                    Contact me:
+                    <a href="https://www.instagram.com/egg_plant.ph/?hl=en" target="_blank" rel="noopener noreferrer">ezekielcadiz01@gmail.com</a>
+                </p>
+                <div class="collaborate-actions">
+                    <a href="assets/CSV.pdf" target="_blank" class="btn-outline resume-btn2">Resume</a>
+                    <a href="https://www.instagram.com/egg_plant.ph/?hl=en" target="_blank" class="btn-primary">Let&apos;s Talk</a>
+                </div>
+                <p class="collaborate-note">This site looks best on desktop, but it still feels smooth on mobile.</p>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        const scrollStage = document.querySelector('.scroll-stage');
+        const taglineText = document.querySelector('.tagline-text');
+        const worksFoldSection = document.querySelector('.works-fold-section');
+        const collaborateSection = document.querySelector('.collaborate-section');
+        const collaborateMarqueeSection = document.querySelector('.collaborate-marquee-section');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const projectCardLinks = document.querySelectorAll('.project-card-link');
+        const taglinePhrases = [
+            'Build smart. Scale fast. Deliver value.',
+            'Turning ideas into scalable digital solutions',
+            'Code with purpose, build with impact',
+            'Simple solutions for complex digital problems',
+            'Creating systems that make life easier',
+            'From idea to system, efficiently built',
+            'Designing clean, scalable, and reliable systems'
+        ];
+
+        function updateScrollStage() {
+            if (!scrollStage) return;
+
+            const rect = scrollStage.getBoundingClientRect();
+            const total = Math.max(scrollStage.offsetHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+            scrollStage.style.setProperty('--scroll-progress', progress.toFixed(3));
+        }
+
+        updateScrollStage();
+        window.addEventListener('scroll', updateScrollStage, { passive: true });
+        window.addEventListener('resize', updateScrollStage);
+
+        function updateWorksFold() {
+            if (!worksFoldSection) return;
+
+            const rect = worksFoldSection.getBoundingClientRect();
+            const total = Math.max(worksFoldSection.offsetHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+            worksFoldSection.style.setProperty('--works-progress', progress.toFixed(3));
+        }
+
+        updateWorksFold();
+        window.addEventListener('scroll', updateWorksFold, { passive: true });
+        window.addEventListener('resize', updateWorksFold);
+
+        function updateCollaborateSection() {
+            if (!collaborateSection) return;
+
+            const rect = collaborateSection.getBoundingClientRect();
+            const total = Math.max(collaborateSection.offsetHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+            collaborateSection.style.setProperty('--collaborate-progress', progress.toFixed(3));
+        }
+
+        updateCollaborateSection();
+        window.addEventListener('scroll', updateCollaborateSection, { passive: true });
+        window.addEventListener('resize', updateCollaborateSection);
+
+        function updateCollaborateMarqueeSection() {
+            if (!collaborateMarqueeSection) return;
+
+            const rect = collaborateMarqueeSection.getBoundingClientRect();
+            const total = Math.max(collaborateMarqueeSection.offsetHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+            collaborateMarqueeSection.style.setProperty('--collaborate-marquee-progress', progress.toFixed(3));
+        }
+
+        updateCollaborateMarqueeSection();
+        window.addEventListener('scroll', updateCollaborateMarqueeSection, { passive: true });
+        window.addEventListener('resize', updateCollaborateMarqueeSection);
+
+        function setMenuState(isOpen) {
+            if (!menuToggle || !menuOverlay) return;
+
+            menuToggle.classList.toggle('is-open', isOpen);
+            menuOverlay.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuOverlay.setAttribute('aria-hidden', String(!isOpen));
+            document.body.classList.toggle('menu-open', isOpen);
+        }
+
+        if (menuToggle && menuOverlay) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = !menuToggle.classList.contains('is-open');
+                setMenuState(isOpen);
+            });
+
+            menuLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const targetId = link.getAttribute('href');
+
+                    if (!targetId || !targetId.startsWith('#')) {
+                        setMenuState(false);
+                        return;
+                    }
+
+                    event.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+
+                    window.requestAnimationFrame(() => {
+                        setMenuState(false);
+                    });
+                });
+            });
+
+            menuOverlay.addEventListener('click', (event) => {
+                if (event.target === menuOverlay || event.target.classList.contains('menu-overlay__backdrop')) {
+                    setMenuState(false);
+                }
+            });
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    setMenuState(false);
+                }
+            });
+        }
+
+        projectCardLinks.forEach((link) => {
+            const card = link.querySelector('.project-card');
+
+            link.addEventListener('pointermove', (event) => {
+                if (!card) return;
+
+                const rect = link.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                const rotateX = ((centerY - y) / centerY) * 8;
+
+                card.style.setProperty('--card-rotate-x', `${rotateX.toFixed(2)}deg`);
+                card.style.setProperty('--card-rotate-y', `${rotateY.toFixed(2)}deg`);
+                card.style.setProperty('--card-glow-x', `${((x / rect.width) * 100).toFixed(2)}%`);
+                card.style.setProperty('--card-glow-y', `${((y / rect.height) * 100).toFixed(2)}%`);
+            });
+
+            link.addEventListener('pointerleave', () => {
+                if (!card) return;
+
+                card.style.setProperty('--card-rotate-x', '0deg');
+                card.style.setProperty('--card-rotate-y', '0deg');
+                card.style.setProperty('--card-glow-x', '50%');
+                card.style.setProperty('--card-glow-y', '50%');
+            });
+
+            link.addEventListener('click', (event) => {
+                const projectUrl = link.dataset.projectLink;
+
+                if (!projectUrl) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        if (taglineText) {
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeTagline() {
+                const currentPhrase = taglinePhrases[phraseIndex];
+
+                if (isDeleting) {
+                    charIndex -= 1;
+                } else {
+                    charIndex += 1;
+                }
+
+                taglineText.textContent = currentPhrase.slice(0, charIndex);
+
+                let delay = isDeleting ? 35 : 65;
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    delay = 3600;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % taglinePhrases.length;
+                    delay = 450;
+                }
+
+                window.setTimeout(typeTagline, delay);
+            }
+
+            typeTagline();
+        }
+    </script>
+</body>
+</html>
