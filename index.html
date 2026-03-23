@@ -11,6 +11,28 @@
     <title>Ezekiel R. Cadiz</title>
 </head>
 <body>
+    <audio id="bg-music" loop preload="auto" autoplay muted playsinline>
+        <source src="assets/Backtodecember(Nene).mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">
+        <span class="music-toggle__cover" aria-hidden="true">
+            <img src="assets/Back_to_December.png" alt="">
+        </span>
+        <span class="music-toggle__text">
+            <span class="music-toggle__eyebrow">Background Audio</span>
+            <span class="music-toggle__label">Back to December</span>
+            <span class="music-toggle__meta">Taylor Swift</span>
+        </span>
+        <span class="music-toggle__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span class="music-toggle__status" aria-hidden="true"></span>
+    </button>
+
     <header class="site-header">
         <a href="#" class="brand">Ezekiel Cadiz</a>
         <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="site-menu">
@@ -27,7 +49,61 @@
             <a href="#skills" class="menu-link">Skills</a>
             <a href="#works" class="menu-link">Works</a>
             <a href="#contact" class="menu-link">Contact</a>
+            <button class="menu-link menu-link-button menu-music-toggle" type="button" aria-expanded="false" aria-controls="music-modal">
+                Music
+            </button>
         </nav>
+    </div>
+
+    <div class="music-modal" id="music-modal" aria-hidden="true">
+        <div class="music-modal__backdrop"></div>
+        <div class="music-modal__panel" role="dialog" aria-modal="true" aria-labelledby="music-modal-title">
+            <div class="music-modal__header">
+                <div>
+                    <p class="music-modal__eyebrow">Playlist</p>
+                    <h3 class="music-modal__title" id="music-modal-title">Swiftie</h3>
+                </div>
+                <button class="music-modal__close" type="button" aria-label="Close music modal">&times;</button>
+            </div>
+            <div class="music-modal__list">
+                <button
+                    class="menu-song"
+                    type="button"
+                    data-track="back-to-december"
+                    data-src="assets/Backtodecember(Nene).mp3"
+                    data-cover="assets/Back_to_December.png"
+                    data-title="Back to December"
+                    data-artist="Taylor Swift"
+                >
+                    <span class="menu-song__title">Back to December</span>
+                    <span class="menu-song__artist">Taylor Swift</span>
+                </button>
+                <button
+                    class="menu-song"
+                    type="button"
+                    data-track="lover"
+                    data-src="assets/Lover (mp3cut.net).mp3"
+                    data-cover="assets/Taylor_Swift-Lover.png"
+                    data-title="Lover"
+                    data-artist="Taylor Swift"
+                >
+                    <span class="menu-song__title">Lover</span>
+                    <span class="menu-song__artist">Taylor Swift</span>
+                </button>
+                <button
+                    class="menu-song"
+                    type="button"
+                    data-track="august"
+                    data-src="assets/august (mp3cut.net).mp3"
+                    data-cover="assets/Taylor_Swift-August.jpg"
+                    data-title="August"
+                    data-artist="Taylor Swift"
+                >
+                    <span class="menu-song__title">August</span>
+                    <span class="menu-song__artist">Taylor Swift</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <section class="hero" id="home">
@@ -384,7 +460,26 @@
         const skillTooltipTitle = skillTooltip?.querySelector('.skill-tooltip__title');
         const skillTooltipDescription = skillTooltip?.querySelector('.skill-tooltip__description');
         const skillTooltipClose = skillTooltip?.querySelector('.skill-tooltip__close');
+        const bgMusic = document.querySelector('#bg-music');
+        const bgMusicSource = bgMusic?.querySelector('source');
+        const musicToggle = document.querySelector('.music-toggle');
+        const musicToggleCover = musicToggle?.querySelector('.music-toggle__cover img');
+        const musicToggleLabel = musicToggle?.querySelector('.music-toggle__label');
+        const musicToggleEyebrow = musicToggle?.querySelector('.music-toggle__eyebrow');
+        const musicToggleMeta = musicToggle?.querySelector('.music-toggle__meta');
+        const menuMusicToggle = document.querySelector('.menu-music-toggle');
+        const musicModal = document.querySelector('.music-modal');
+        const musicModalClose = document.querySelector('.music-modal__close');
+        const menuSongButtons = document.querySelectorAll('.menu-song');
         let activeSkillCard = null;
+        let autoplayPrimed = true;
+        let currentTrack = {
+            title: 'Back to December',
+            artist: 'Taylor Swift',
+            src: 'assets/Backtodecember(Nene).mp3',
+            cover: 'assets/Back_to_December.png',
+            id: 'back-to-december'
+        };
         const taglinePhrases = [
             'Build smart. Scale fast. Deliver value.',
             'Turning ideas into scalable digital solutions',
@@ -459,6 +554,18 @@
             menuToggle.setAttribute('aria-expanded', String(isOpen));
             menuOverlay.setAttribute('aria-hidden', String(!isOpen));
             document.body.classList.toggle('menu-open', isOpen);
+
+            if (!isOpen) {
+                setMenuMusicState(false);
+            }
+        }
+
+        function setMenuMusicState(isOpen) {
+            if (!menuMusicToggle || !musicModal) return;
+
+            menuMusicToggle.setAttribute('aria-expanded', String(isOpen));
+            musicModal.classList.toggle('is-open', isOpen);
+            musicModal.setAttribute('aria-hidden', String(!isOpen));
         }
 
         if (menuToggle && menuOverlay) {
@@ -497,10 +604,25 @@
 
             window.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') {
+                    setMenuMusicState(false);
                     setMenuState(false);
                 }
             });
         }
+
+        menuMusicToggle?.addEventListener('click', () => {
+            setMenuMusicState(true);
+        });
+
+        musicModalClose?.addEventListener('click', () => {
+            setMenuMusicState(false);
+        });
+
+        musicModal?.addEventListener('click', (event) => {
+            if (event.target === musicModal || event.target.classList.contains('music-modal__backdrop')) {
+                setMenuMusicState(false);
+            }
+        });
 
         projectCardLinks.forEach((link) => {
             const card = link.querySelector('.project-card');
@@ -537,6 +659,187 @@
                 if (!projectUrl) {
                     event.preventDefault();
                 }
+            });
+        });
+
+        function syncMenuSongState() {
+            menuSongButtons.forEach((button) => {
+                const isActive = button.dataset.track === currentTrack.id;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+        }
+
+        function updateMusicDisplay() {
+            if (musicToggleCover) {
+                musicToggleCover.src = currentTrack.cover;
+                musicToggleCover.alt = `${currentTrack.title} cover`;
+            }
+
+            if (musicToggleLabel) {
+                musicToggleLabel.textContent = currentTrack.title;
+            }
+
+            if (musicToggleMeta) {
+                musicToggleMeta.textContent = currentTrack.artist;
+            }
+
+            syncMenuSongState();
+        }
+
+        async function tryAutoplayCurrentTrack() {
+            if (!bgMusic || !bgMusicSource || !currentTrack.src) return;
+
+            bgMusicSource.src = currentTrack.src;
+            bgMusic.load();
+            updateMusicDisplay();
+            bgMusic.muted = true;
+
+            try {
+                await bgMusic.play();
+                setMusicButtonState(true);
+            } catch (error) {
+                setMusicButtonState(false);
+            }
+        }
+
+        function queueAutoplayAttempts() {
+            if (!bgMusic) return;
+
+            window.addEventListener('DOMContentLoaded', () => {
+                tryAutoplayCurrentTrack();
+            });
+
+            window.addEventListener('load', () => {
+                tryAutoplayCurrentTrack();
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && bgMusic.paused) {
+                    tryAutoplayCurrentTrack();
+                }
+            });
+        }
+
+        async function activateAudioWithSound() {
+            if (!bgMusic) return;
+
+            bgMusic.muted = false;
+            autoplayPrimed = false;
+
+            try {
+                if (bgMusic.paused) {
+                    await bgMusic.play();
+                }
+                setMusicButtonState(true);
+            } catch (error) {
+                setMusicButtonState(false);
+            }
+        }
+
+        async function changeTrack(button, shouldAutoplay = false) {
+            if (!bgMusic || !bgMusicSource || !button) return;
+
+            currentTrack = {
+                id: button.dataset.track || '',
+                title: button.dataset.title || 'Unknown Track',
+                artist: button.dataset.artist || 'Unknown Artist',
+                src: button.dataset.src || '',
+                cover: button.dataset.cover || ''
+            };
+
+            bgMusic.pause();
+            bgMusicSource.src = currentTrack.src;
+            bgMusic.load();
+            updateMusicDisplay();
+
+            if (!currentTrack.src) {
+                setMusicButtonState(false, true);
+                return;
+            }
+
+            if (shouldAutoplay) {
+                try {
+                    bgMusic.muted = false;
+                    autoplayPrimed = false;
+                    await bgMusic.play();
+                    setMusicButtonState(true);
+                } catch (error) {
+                    setMusicButtonState(false);
+                }
+            } else {
+                setMusicButtonState(false);
+            }
+        }
+
+        function setMusicButtonState(isPlaying, isUnavailable = false) {
+            if (!musicToggle) return;
+
+            if (isUnavailable) {
+                musicToggle.classList.remove('is-playing');
+                musicToggle.classList.add('is-unavailable');
+                musicToggle.disabled = true;
+                musicToggle.setAttribute('aria-pressed', 'false');
+                musicToggle.setAttribute('aria-label', 'Background music unavailable');
+                if (musicToggleEyebrow) musicToggleEyebrow.textContent = 'Audio';
+                if (musicToggleLabel) musicToggleLabel.textContent = 'Music N/A';
+                if (musicToggleMeta) musicToggleMeta.textContent = 'Add a valid track';
+                return;
+            }
+
+            musicToggle.disabled = false;
+            musicToggle.classList.remove('is-unavailable');
+            musicToggle.classList.toggle('is-playing', isPlaying);
+            musicToggle.setAttribute('aria-pressed', String(isPlaying));
+            musicToggle.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
+            if (musicToggleEyebrow) musicToggleEyebrow.textContent = isPlaying ? 'Now Playing' : 'Background Audio';
+        }
+
+        if (bgMusic && musicToggle) {
+            bgMusic.volume = 0.35;
+            updateMusicDisplay();
+            syncMenuSongState();
+
+            musicToggle.addEventListener('click', async () => {
+                if (!bgMusicSource?.getAttribute('src')) {
+                    setMusicButtonState(false, true);
+                    return;
+                }
+
+                try {
+                    if (bgMusic.muted || autoplayPrimed) {
+                        await activateAudioWithSound();
+                    } else if (bgMusic.paused) {
+                        await bgMusic.play();
+                        setMusicButtonState(true);
+                    } else {
+                        bgMusic.pause();
+                        setMusicButtonState(false);
+                    }
+                } catch (error) {
+                    setMusicButtonState(false, true);
+                }
+            });
+
+            bgMusic.addEventListener('ended', () => {
+                setMusicButtonState(false);
+            });
+
+            bgMusic.addEventListener('error', () => {
+                setMusicButtonState(false, true);
+            });
+
+            tryAutoplayCurrentTrack();
+            queueAutoplayAttempts();
+            window.addEventListener('pointerdown', activateAudioWithSound, { once: true });
+            window.addEventListener('keydown', activateAudioWithSound, { once: true });
+            window.addEventListener('touchstart', activateAudioWithSound, { once: true });
+        }
+
+        menuSongButtons.forEach((button) => {
+            button.addEventListener('click', async () => {
+                await changeTrack(button, true);
+                setMenuMusicState(false);
             });
         });
 
