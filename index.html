@@ -533,36 +533,20 @@
             'Designing clean, scalable, and reliable systems'
         ];
 
-        function getVisitorDayKey() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
         async function updateVisitorCount() {
             if (!visitorCount) return;
 
             if (firestoreDb) {
                 try {
                     const counterRef = doc(firestoreDb, 'siteStats', 'visitorCounter');
-                    const dailyStorageKey = 'portfolio-visitor-last-count-date';
-                    const todayKey = getVisitorDayKey();
-                    const lastCountedDay = window.localStorage.getItem(dailyStorageKey);
-
-                    if (lastCountedDay !== todayKey) {
-                        await setDoc(
-                            counterRef,
-                            {
-                                count: increment(1),
-                                updatedAt: serverTimestamp()
-                            },
-                            { merge: true }
-                        );
-
-                        window.localStorage.setItem(dailyStorageKey, todayKey);
-                    }
+                    await setDoc(
+                        counterRef,
+                        {
+                            count: increment(1),
+                            updatedAt: serverTimestamp()
+                        },
+                        { merge: true }
+                    );
 
                     const counterSnapshot = await getDoc(counterRef);
                     const countValue = counterSnapshot.exists() ? counterSnapshot.data().count : 1;
@@ -574,18 +558,11 @@
             }
 
             try {
-                const countStorageKey = 'portfolio-visitor-count';
-                const dailyStorageKey = 'portfolio-visitor-last-count-date';
-                const todayKey = getVisitorDayKey();
-                const previousCount = Number.parseInt(window.localStorage.getItem(countStorageKey) || '0', 10);
-                const lastCountedDay = window.localStorage.getItem(dailyStorageKey);
-                const nextCount = lastCountedDay === todayKey
-                    ? previousCount
-                    : (Number.isFinite(previousCount) ? previousCount + 1 : 1);
-
-                window.localStorage.setItem(countStorageKey, String(nextCount));
-                window.localStorage.setItem(dailyStorageKey, todayKey);
-                visitorCount.textContent = String(nextCount || 1).padStart(3, '0');
+                const storageKey = 'portfolio-visitor-count';
+                const previousCount = Number.parseInt(window.localStorage.getItem(storageKey) || '0', 10);
+                const nextCount = Number.isFinite(previousCount) ? previousCount + 1 : 1;
+                window.localStorage.setItem(storageKey, String(nextCount));
+                visitorCount.textContent = String(nextCount).padStart(3, '0');
             } catch (error) {
                 visitorCount.textContent = '001';
             }

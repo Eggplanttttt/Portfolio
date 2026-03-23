@@ -17,6 +17,12 @@ body {
     --scroll-progress: 0;
 }
 
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button {
+    cursor: none;
+}
+
 body.menu-open {
     overflow: hidden;
 }
@@ -28,6 +34,42 @@ body.skill-tooltip-open {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+.brand-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 999;
+    width: 64px;
+    height: 64px;
+    transform: translate(-14%, -8%);
+    transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, filter 0.2s ease;
+}
+
+.brand-cursor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 6px 12px rgba(179, 0, 179, 0.28));
+}
+
+body.cursor-visible .brand-cursor {
+    opacity: 1;
+}
+
+body.cursor-hovering .brand-cursor {
+    width: 76px;
+    height: 76px;
+    filter: brightness(1.08);
+}
+
+body.cursor-pressed .brand-cursor {
+    width: 54px;
+    height: 54px;
 }
 
 .site-header {
@@ -1011,6 +1053,18 @@ a {
     font-size: 1.4rem;
     line-height: 1;
     cursor: pointer;
+
+@media (pointer: coarse) {
+    .brand-cursor {
+        display: none;
+    }
+
+    body.has-custom-cursor,
+    body.has-custom-cursor a,
+    body.has-custom-cursor button {
+        cursor: auto;
+    }
+}
     transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
