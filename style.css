@@ -21,6 +21,10 @@ body.menu-open {
     overflow: hidden;
 }
 
+body.skill-tooltip-open {
+    overflow: hidden;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -602,6 +606,7 @@ a {
 }
 
 .skills-groups {
+    position: relative;
     display: grid;
     gap: 2.2rem;
 }
@@ -637,6 +642,7 @@ a {
     height: 92px;
     min-width: 92px;
     padding: 0.9rem;
+    appearance: none;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 18px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
@@ -644,7 +650,8 @@ a {
     align-items: center;
     justify-content: center;
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skill-card img {
@@ -654,10 +661,92 @@ a {
     display: block;
 }
 
-.skill-card:hover {
+.skill-card:hover,
+.skill-card.is-active {
     transform: translateY(-4px);
     border-color: rgba(179, 0, 179, 0.55);
     background: linear-gradient(180deg, rgba(179, 0, 179, 0.18), rgba(255, 255, 255, 0.04));
+    box-shadow: 0 20px 38px rgba(0, 0, 0, 0.24);
+}
+
+.skill-card:focus-visible {
+    outline: 2px solid rgba(240, 192, 228, 0.95);
+    outline-offset: 4px;
+}
+
+.skill-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(420px, calc(100vw - 3rem));
+    padding: 1.35rem 1.4rem 1.5rem;
+    border: 1px solid rgba(199, 102, 199, 0.26);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top right, rgba(179, 0, 179, 0.18), transparent 30%),
+        linear-gradient(180deg, rgba(22, 0, 22, 0.96), rgba(8, 0, 8, 0.94));
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.24s ease, transform 0.24s ease;
+    z-index: 5;
+}
+
+.skill-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-tooltip__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.skill-tooltip__eyebrow {
+    color: #c766c7;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.skill-tooltip__close {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f7eef7;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-tooltip__close:hover {
+    transform: scale(1.05);
+    background: rgba(179, 0, 179, 0.2);
+    border-color: rgba(199, 102, 199, 0.45);
+}
+
+.skill-tooltip__close:focus-visible {
+    outline: 2px solid rgba(240, 192, 228, 0.95);
+    outline-offset: 3px;
+}
+
+.skill-tooltip__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #ffffff;
+    margin-bottom: 0.65rem;
+}
+
+.skill-tooltip__description {
+    max-width: 62ch;
+    color: rgba(247, 238, 247, 0.9);
+    font-size: 1rem;
+    line-height: 1.75;
 }
 
 .works-fold-section {
@@ -1583,6 +1672,41 @@ a {
         height: 60px;
         min-width: 60px;
         padding: 1.0rem;
+    }
+
+    .skill-tooltip {
+        position: fixed;
+        left: 0.75rem;
+        right: 0.75rem;
+        top: auto;
+        bottom: 0.75rem;
+        width: auto;
+        max-width: none;
+        max-height: min(54vh, 420px);
+        padding: 1rem 1rem 1.1rem;
+        border-radius: 20px;
+        overflow-y: auto;
+        transform: translateY(24px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .skill-tooltip__header {
+        margin-bottom: 0.65rem;
+    }
+
+    .skill-tooltip__close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .skill-tooltip__title {
+        font-size: 1.2rem;
+    }
+
+    .skill-tooltip__description {
+        font-size: 0.92rem;
+        line-height: 1.6;
     }
 
     .works-fold-section {

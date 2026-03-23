@@ -90,15 +90,15 @@
                 <div class="skills-group skills-group-wide">
                     <h3>Frontend Development</h3>
                     <div class="skills-grid">
-                        <div class="skill-card">
-                            <img src="assets/html5.svg" alt="HTML">
-                        </div>
-                        <div class="skill-card">
-                            <img src="assets/css3.svg" alt="CSS">
-                        </div>
-                        <div class="skill-card">
+                        <button class="skill-card" type="button" data-skill-name="HTML5" data-skill-description="HTML5 (Hypertext Markup Language 5) is the standard markup language used to structure and present content on the World Wide Web. It provides the foundation of a webpage by defining elements like headings, text, images, links, forms, audio, and video." aria-label="Show details for HTML5">
+                            <img src="assets/html5.svg" alt="HTML5">
+                        </button>
+                        <button class="skill-card" type="button" data-skill-name="CSS3" data-skill-description="CSS3 (Cascading Style Sheets) is used to style and layout web pages. It controls colors, spacing, typography, animations, responsiveness, and the overall visual presentation of HTML content." aria-label="Show details for CSS3">
+                            <img src="assets/css3.svg" alt="CSS3">
+                        </button>
+                        <button class="skill-card" type="button" data-skill-name="JavaScript" data-skill-description="JavaScript is a programming language that adds interactivity and dynamic behavior to websites. It is commonly used for animations, DOM manipulation, form validation, APIs, and real-time user interactions." aria-label="Show details for JavaScript">
                             <img src="assets/js.svg" alt="JavaScript">
-                        </div>
+                        </button>
                     </div>
                 </div>
 
@@ -106,30 +106,30 @@
                     <div class="skills-group">
                         <h3>User Interface</h3>
                         <div class="skills-grid skills-grid-small">
-                            <div class="skill-card">
+                            <button class="skill-card" type="button" data-skill-name="Figma" data-skill-description="Figma is a collaborative interface design tool used for wireframes, UI design, prototypes, and design systems. It helps plan user experiences before development begins." aria-label="Show details for Figma">
                                 <img src="assets/figma.svg" alt="Figma">
-                            </div>
-                            <div class="skill-card">
+                            </button>
+                            <button class="skill-card" type="button" data-skill-name="Canva" data-skill-description="Canva is a visual design platform used to create presentations, graphics, social media assets, and branded content quickly through templates and drag-and-drop tools." aria-label="Show details for Canva">
                                 <img src="assets/canva.svg" alt="Canva">
-                            </div>
+                            </button>
                         </div>
                     </div>
 
                     <div class="skills-group">
                         <h3>Other Skills</h3>
                         <div class="skills-grid skills-grid-small">
-                            <div class="skill-card">
+                            <button class="skill-card" type="button" data-skill-name="Git" data-skill-description="Git is a version control system used to track code changes, manage branches, and collaborate with other developers safely across projects." aria-label="Show details for Git">
                                 <img src="assets/git.svg" alt="Git">
-                            </div>
-                            <div class="skill-card">
+                            </button>
+                            <button class="skill-card" type="button" data-skill-name="Railway" data-skill-description="Railway is a cloud deployment platform that helps developers deploy web applications, databases, and backend services quickly with simple infrastructure management." aria-label="Show details for Railway">
                                 <img src="assets/railway.png" alt="Railway">
-                            </div>
-                            <div class="skill-card">
+                            </button>
+                            <button class="skill-card" type="button" data-skill-name="Resend" data-skill-description="Resend is an email API platform used to send transactional emails such as verification messages, notifications, and workflow-based communications from web apps." aria-label="Show details for Resend">
                                 <img src="assets/resend.svg" alt="Resend">
-                            </div>
-                            <div class="skill-card">
+                            </button>
+                            <button class="skill-card" type="button" data-skill-name="VB.NET" data-skill-description="VB.NET is an object-oriented programming language from Microsoft built on the .NET framework. It is often used for desktop applications, business systems, and structured application logic." aria-label="Show details for VB.NET">
                                 <img src="assets/VB.NET.svg" alt="OOP VB.NET">
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -137,28 +137,39 @@
                 <div class="skills-group">
                     <h3>Frameworks</h3>
                     <div class="skills-grid skills-grid-small">
-                        <div class="skill-card">
+                        <button class="skill-card" type="button" data-skill-name="Laravel" data-skill-description="Laravel is a PHP web framework designed for building modern web applications with elegant syntax. It includes routing, authentication, database tools, queues, mailing, and strong developer productivity features." aria-label="Show details for Laravel">
                             <img src="assets/laravel.svg" alt="Laravel">
-                        </div>
-                        <div class="skill-card">
+                        </button>
+                        <button class="skill-card" type="button" data-skill-name="Bootstrap" data-skill-description="Bootstrap is a front-end framework that provides ready-made responsive layout utilities, components, and styling patterns for faster web interface development." aria-label="Show details for Bootstrap">
                             <img src="assets/bootstrap.svg" alt="Bootstrap">
-                        </div>
+                        </button>
                     </div>
                 </div>
 
                 <div class="skills-group">
                     <h3>Backend Development</h3>
                     <div class="skills-grid skills-grid-small">
-                        <div class="skill-card">
+                        <button class="skill-card" type="button" data-skill-name="MySQL" data-skill-description="MySQL is a relational database management system used to store, organize, and query structured application data efficiently." aria-label="Show details for MySQL">
                             <img src="assets/mysql.svg" alt="MySQL">
-                        </div>
-                        <div class="skill-card">
+                        </button>
+                        <button class="skill-card" type="button" data-skill-name="PHP" data-skill-description="PHP is a server-side scripting language widely used for web development. It powers dynamic websites and handles backend logic, routing, sessions, and database operations." aria-label="Show details for PHP">
                             <img src="assets/php.svg" alt="PHP">
-                        </div>
-                        <div class="skill-card">
+                        </button>
+                        <button class="skill-card" type="button" data-skill-name="MySQL Workbench" data-skill-description="MySQL Workbench is a visual database tool used for database design, SQL development, administration, and server management in MySQL environments." aria-label="Show details for MySQL Workbench">
                             <img src="assets/mysqlworkbench.svg" alt="MySQL Workbench">
-                        </div>
+                        </button>
                     </div>
+                </div>
+
+                <div class="skill-tooltip" id="skill-tooltip" aria-live="polite" hidden>
+                    <div class="skill-tooltip__header">
+                        <p class="skill-tooltip__eyebrow">Skill Overview</p>
+                        <button class="skill-tooltip__close" type="button" aria-label="Close skill details">&times;</button>
+                    </div>
+                    <h4 class="skill-tooltip__title">HTML5</h4>
+                    <p class="skill-tooltip__description">
+                        HTML5 (Hypertext Markup Language 5) is the standard markup language used to structure and present content on the World Wide Web. It provides the foundation of a webpage by defining elements like headings, text, images, links, forms, audio, and video.
+                    </p>
                 </div>
             </div>
         </div>
@@ -367,6 +378,13 @@
         const menuOverlay = document.querySelector('.menu-overlay');
         const menuLinks = document.querySelectorAll('.menu-link');
         const projectCardLinks = document.querySelectorAll('.project-card-link');
+        const skillCards = document.querySelectorAll('.skill-card');
+        const skillsGroups = document.querySelector('.skills-groups');
+        const skillTooltip = document.querySelector('#skill-tooltip');
+        const skillTooltipTitle = skillTooltip?.querySelector('.skill-tooltip__title');
+        const skillTooltipDescription = skillTooltip?.querySelector('.skill-tooltip__description');
+        const skillTooltipClose = skillTooltip?.querySelector('.skill-tooltip__close');
+        let activeSkillCard = null;
         const taglinePhrases = [
             'Build smart. Scale fast. Deliver value.',
             'Turning ideas into scalable digital solutions',
@@ -522,6 +540,107 @@
             });
         });
 
+        function closeSkillTooltip() {
+            if (!skillTooltip) return;
+
+            skillTooltip.hidden = true;
+            skillTooltip.classList.remove('is-visible');
+            skillTooltip.style.removeProperty('top');
+            skillTooltip.style.removeProperty('left');
+            document.body.classList.remove('skill-tooltip-open');
+
+            if (activeSkillCard) {
+                activeSkillCard.classList.remove('is-active');
+                activeSkillCard.setAttribute('aria-expanded', 'false');
+            }
+
+            activeSkillCard = null;
+        }
+
+        function positionSkillTooltip(card) {
+            if (!skillTooltip || !skillsGroups || !card) return;
+
+            if (window.innerWidth <= 640) {
+                skillTooltip.style.removeProperty('top');
+                skillTooltip.style.removeProperty('left');
+                document.body.classList.add('skill-tooltip-open');
+                return;
+            }
+
+            document.body.classList.remove('skill-tooltip-open');
+
+            const containerRect = skillsGroups.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const tooltipWidth = skillTooltip.offsetWidth;
+            const top = cardRect.bottom - containerRect.top + 14;
+            const centeredLeft = (cardRect.left - containerRect.left) + (cardRect.width / 2) - (tooltipWidth / 2);
+            const maxLeft = Math.max(containerRect.width - tooltipWidth, 0);
+            const left = Math.min(Math.max(centeredLeft, 0), maxLeft);
+
+            skillTooltip.style.top = `${top}px`;
+            skillTooltip.style.left = `${left}px`;
+        }
+
+        function openSkillTooltip(card) {
+            if (!skillTooltip || !skillTooltipTitle || !skillTooltipDescription) return;
+
+            const { skillName, skillDescription } = card.dataset;
+
+            if (activeSkillCard === card && skillTooltip.classList.contains('is-visible')) {
+                closeSkillTooltip();
+                return;
+            }
+
+            if (activeSkillCard) {
+                activeSkillCard.classList.remove('is-active');
+                activeSkillCard.setAttribute('aria-expanded', 'false');
+            }
+
+            activeSkillCard = card;
+            activeSkillCard.classList.add('is-active');
+            activeSkillCard.setAttribute('aria-expanded', 'true');
+
+            skillTooltipTitle.textContent = skillName || 'Skill';
+            skillTooltipDescription.textContent = skillDescription || '';
+            skillTooltip.hidden = false;
+            positionSkillTooltip(card);
+
+            window.requestAnimationFrame(() => {
+                skillTooltip.classList.add('is-visible');
+                const tooltipRect = skillTooltip.getBoundingClientRect();
+                const isOutOfView = tooltipRect.bottom > window.innerHeight || tooltipRect.top < 0;
+
+                if (isOutOfView) {
+                    skillTooltip.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        }
+
+        skillCards.forEach((card) => {
+            card.setAttribute('aria-controls', 'skill-tooltip');
+            card.setAttribute('aria-expanded', 'false');
+
+            card.addEventListener('click', () => {
+                openSkillTooltip(card);
+            });
+        });
+
+        skillTooltipClose?.addEventListener('click', () => {
+            closeSkillTooltip();
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!skillTooltip || skillTooltip.hidden) return;
+
+            const clickedSkillCard = event.target.closest('.skill-card');
+
+            if (clickedSkillCard || skillTooltip.contains(event.target)) {
+                return;
+            }
+
+            closeSkillTooltip();
+        });
+
         if (taglineText) {
             let phraseIndex = 0;
             let charIndex = 0;
@@ -554,6 +673,18 @@
 
             typeTagline();
         }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && skillTooltip && !skillTooltip.hidden) {
+                closeSkillTooltip();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (activeSkillCard && skillTooltip && !skillTooltip.hidden) {
+                positionSkillTooltip(activeSkillCard);
+            }
+        });
     </script>
 </body>
 </html>
