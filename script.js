@@ -1,22 +1,4 @@
-import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js';
-        import { getFirestore, doc, getDoc, setDoc, increment, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
-
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-        apiKey: "AIzaSyDeGBjAiqj4V9rJh5S81PUbhyZkuJsvdAA",
-        authDomain: "my-portfolio-ezekiel.firebaseapp.com",
-        projectId: "my-portfolio-ezekiel",
-        storageBucket: "my-portfolio-ezekiel.firebasestorage.app",
-        messagingSenderId: "74900076736",
-        appId: "1:74900076736:web:3be43fc620101b62015525",
-        measurementId: "G-5W8K7E68NK"
-        };
-
-        const hasFirebaseConfig = Object.values(firebaseConfig).every((value) => value && !String(value).startsWith('PASTE_YOUR_'));
-        const firebaseApp = hasFirebaseConfig ? (getApps().length ? getApps()[0] : initializeApp(firebaseConfig)) : null;
-        const firestoreDb = firebaseApp ? getFirestore(firebaseApp) : null;
-
-        const scrollStage = document.querySelector('.scroll-stage');
+const scrollStage = document.querySelector('.scroll-stage');
         const taglineText = document.querySelector('.tagline-text');
         const worksFoldSection = document.querySelector('.works-fold-section');
         const collaborateSection = document.querySelector('.collaborate-section');
@@ -75,34 +57,23 @@ import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/12.7.
         async function updateVisitorCount() {
             if (!visitorCount) return;
 
-            if (firestoreDb) {
-                try {
-                    const counterRef = doc(firestoreDb, 'siteStats', 'visitorCounter');
-                    await setDoc(
-                        counterRef,
-                        {
-                            count: increment(1),
-                            updatedAt: serverTimestamp()
-                        },
-                        { merge: true }
-                    );
-
-                    const counterSnapshot = await getDoc(counterRef);
-                    const countValue = counterSnapshot.exists() ? counterSnapshot.data().count : 1;
-                    visitorCount.textContent = String(countValue || 1).padStart(3, '0');
-                    return;
-                } catch (error) {
-                    console.error('Firebase visitor count failed, falling back to local counter.', error);
-                }
-            }
-
             try {
-                const storageKey = 'portfolio-visitor-count';
-                const previousCount = Number.parseInt(window.localStorage.getItem(storageKey) || '0', 10);
-                const nextCount = Number.isFinite(previousCount) ? previousCount + 1 : 1;
-                window.localStorage.setItem(storageKey, String(nextCount));
-                visitorCount.textContent = String(nextCount).padStart(3, '0');
+                const response = await fetch('visitor-counter.php', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Counter request failed with ${response.status}`);
+                }
+
+                const data = await response.json();
+                const countValue = Number.parseInt(data.count, 10);
+                visitorCount.textContent = String(Number.isFinite(countValue) ? countValue : 1).padStart(3, '0');
             } catch (error) {
+                console.error('Visitor count endpoint failed.', error);
                 visitorCount.textContent = '001';
             }
         }
