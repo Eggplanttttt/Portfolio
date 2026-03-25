@@ -54,22 +54,33 @@ const scrollStage = document.querySelector('.scroll-stage');
             }, 1150);
         }
 
+        async function requestVisitorCount(endpoint) {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Counter request failed with ${response.status}`);
+            }
+
+            return response.json();
+        }
+
         async function updateVisitorCount() {
             if (!visitorCount) return;
 
             try {
-                const response = await fetch('visitor-counter.php', {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                });
+                let data;
 
-                if (!response.ok) {
-                    throw new Error(`Counter request failed with ${response.status}`);
+                try {
+                    data = await requestVisitorCount('/api/visitor-count');
+                } catch (vercelError) {
+                    data = await requestVisitorCount('visitor-counter.php');
                 }
 
-                const data = await response.json();
                 const countValue = Number.parseInt(data.count, 10);
                 visitorCount.textContent = String(Number.isFinite(countValue) ? countValue : 1).padStart(3, '0');
             } catch (error) {
