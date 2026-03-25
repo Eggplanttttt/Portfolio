@@ -2208,7 +2208,28 @@ body.cursor-pressed .brand-cursor {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+        width: 100%;
+        grid-auto-flow: column;
+        grid-auto-columns: min(84vw, 340px);
+        grid-template-columns: none;
+        gap: 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 1rem 0.4rem;
+        margin: 0 -1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        align-items: stretch;
+    }
+
+    .projects-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .project-card-link {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
     }
 
     .project-card {
