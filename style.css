@@ -17,6 +17,87 @@ body {
     --scroll-progress: 0;
 }
 
+body.is-loading {
+    overflow: hidden;
+}
+
+.intro-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(circle at top center, rgba(98, 28, 126, 0.2), transparent 30%),
+        #060007;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-loader__content {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.intro-loader__eyebrow {
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    font-size: 0.88rem;
+    color: rgba(223, 191, 236, 0.72);
+    animation: introFadeUp 0.8s ease both;
+}
+
+.intro-loader__name {
+    display: grid;
+    gap: 0.15em;
+    font-size: clamp(3rem, 9vw, 6.4rem);
+    line-height: 0.9;
+    font-weight: 700;
+    color: #4d0a73;
+    text-shadow: 0 10px 30px rgba(77, 10, 115, 0.35);
+}
+
+.intro-loader__name span {
+    display: block;
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+    animation: introNameReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-loader__name span:nth-child(2) {
+    animation-delay: 0.18s;
+}
+
+@keyframes introNameReveal {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes introFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 body.has-custom-cursor,
 body.has-custom-cursor a,
 body.has-custom-cursor button {
@@ -2013,8 +2094,8 @@ body.cursor-pressed .brand-cursor {
     }
 
     .hero {
-        min-height: 95svh;
-        padding: 0.29rem 0.9rem 10rem;
+        min-height: 76svh;
+        padding: 0.29rem 0.9rem 4.5rem;
         align-items: start;
         overflow: hidden;
     }
@@ -2044,7 +2125,7 @@ body.cursor-pressed .brand-cursor {
 
     .hero-content {
         max-width: 72%;
-        padding-top: 1.8rem;
+        padding-top: 4.8rem;
     }
 
     .socials {
@@ -2081,7 +2162,7 @@ body.cursor-pressed .brand-cursor {
     .hero-image {
         position: absolute;
         right: 1.5rem;
-        bottom: 16.25rem;
+        bottom: 8.4rem;
         margin: 0;
         width: min(56vw, 282px);
         z-index: -1;
@@ -2094,7 +2175,7 @@ body.cursor-pressed .brand-cursor {
 
     .scroll-stage {
         height: 175vh;
-        margin-top: 0;
+        margin-top: -2.5rem;
     }
 
     .paint-stroke {
