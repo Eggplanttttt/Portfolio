@@ -259,6 +259,9 @@
                 <div class="skills-group">
                     <h3>Backend Development</h3>
                     <div class="skills-grid skills-grid-small">
+                        <button class="skill-card" type="button" data-skill-name="Firebase" data-skill-description="Firebase is a backend platform by Google that provides services like authentication, Firestore databases, hosting, storage, analytics, and real-time app support for modern web projects." aria-label="Show details for Firebase">
+                            <img src="assets/skills/firebase.png" alt="Firebase">
+                        </button>
                         <button class="skill-card" type="button" data-skill-name="MySQL" data-skill-description="MySQL is a relational database management system used to store, organize, and query structured application data efficiently." aria-label="Show details for MySQL">
                             <img src="assets/skills/mysql.svg" alt="MySQL">
                         </button>
@@ -359,46 +362,74 @@
             </p>
         </div>
 
-        <div class="projects-grid">
-            <a href="https://e-pacd.online/" target="_blank" rel="noopener noreferrer" class="project-card-link" data-project-link="https://e-pacd.online/" aria-label="Open E-PACD project">
-                <article class="project-card project-card-green">
-                    <div class="project-card__bg"></div>
-                    <div class="project-card__glow"></div>
-                    <div class="project-card__stack">
-                        <img src="assets/skills/php.svg" alt="PHP">
-                        <img src="assets/skills/laravel.svg" alt="Laravel">
-                        <img src="assets/skills/resend.svg" alt="Resend">
-                        <img src="assets/skills/railway.png" alt="Railway">
-                    </div>
-                    <div class="project-card__mockup project-card__mockup-image">
-                        <img src="assets/project/e-pacd.png" alt="E-PACD project preview">
-                    </div>
-                    <div class="project-card__body">
-                        <h3>E-PACD - Electronic Public Assistance and Complaint Desk [Thesis]</h3>
-                        <p>A full-stack public service platform with complaint handling, email workflows, and modern deployment.</p>
-                    </div>
-                </article>
-            </a>
+        <div class="projects-carousel">
+            <button class="projects-carousel__arrow projects-carousel__arrow--left is-hidden" type="button" aria-label="Scroll projects left">
+                <img src="assets/other/left.png" alt="" aria-hidden="true">
+            </button>
+            <div class="projects-grid">
+                <a href="https://e-pacd.online/" target="_blank" rel="noopener noreferrer" class="project-card-link" data-project-link="https://e-pacd.online/" aria-label="Open E-PACD project">
+                    <article class="project-card project-card-green">
+                        <div class="project-card__bg"></div>
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__stack">
+                            <img src="assets/skills/php.svg" alt="PHP">
+                            <img src="assets/skills/laravel.svg" alt="Laravel">
+                            <img src="assets/skills/resend.svg" alt="Resend">
+                            <img src="assets/skills/railway.png" alt="Railway">
+                        </div>
+                        <div class="project-card__mockup project-card__mockup-image">
+                            <img src="assets/project/e-pacd.png" alt="E-PACD project preview">
+                        </div>
+                        <div class="project-card__body">
+                            <h3>E-PACD - Electronic Public Assistance and Complaint Desk [Thesis]</h3>
+                            <p>A full-stack public service platform with complaint handling, email workflows, and modern deployment.</p>
+                        </div>
+                    </article>
+                </a>
 
-            <a href="#" class="project-card-link" aria-label="View Mutual Aid and Payment System project">
-                <article class="project-card project-card-gold">
-                    <div class="project-card__bg"></div>
-                    <div class="project-card__glow"></div>
-                    <div class="project-card__stack">
-                        <img src="assets/skills/php.svg" alt="PHP">
-                        <img src="assets/skills/laravel.svg" alt="Laravel">
-                        <img src="assets/skills/html5.svg" alt="HTML">
-                        <img src="assets/skills/bootstrap.svg" alt="Bootstrap">
-                    </div>
-                    <div class="project-card__mockup project-card__mockup-image">
-                        <img src="assets/project/mutual aid and payment system.png" alt="Mutual Aid and Payment System project preview">
-                    </div>
-                    <div class="project-card__body">
-                        <h3>Mutual Aid and Payment System</h3>
-                        <p>A full-stack community support and payment management system built with PHP, Laravel, HTML, and Bootstrap.</p>
-                    </div>
-                </article>
-            </a>
+                <a href="#" class="project-card-link" aria-label="View Mutual Aid and Payment System project">
+                    <article class="project-card project-card-gold">
+                        <div class="project-card__bg"></div>
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__stack">
+                            <img src="assets/skills/php.svg" alt="PHP">
+                            <img src="assets/skills/laravel.svg" alt="Laravel">
+                            <img src="assets/skills/html5.svg" alt="HTML">
+                            <img src="assets/skills/bootstrap.svg" alt="Bootstrap">
+                        </div>
+                        <div class="project-card__mockup project-card__mockup-image">
+                            <img src="assets/project/mutual aid and payment system.png" alt="Mutual Aid and Payment System project preview">
+                        </div>
+                        <div class="project-card__body">
+                            <h3>Mutual Aid and Payment System</h3>
+                            <p>A full-stack community support and payment management system built with PHP, Laravel, HTML, and Bootstrap.</p>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="https://tmxclassics.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link" data-project-link="https://tmxclassics.vercel.app/" aria-label="Open CustomXTMX project">
+                    <article class="project-card project-card-orange">
+                        <div class="project-card__bg"></div>
+                        <div class="project-card__glow"></div>
+                        <div class="project-card__stack">
+                            <img src="assets/skills/html5.svg" alt="HTML">
+                            <img src="assets/skills/css3.svg" alt="CSS">
+                            <img src="assets/skills/js.svg" alt="JavaScript">
+                            <img src="assets/skills/firebase.png" alt="Firebase">
+                        </div>
+                        <div class="project-card__mockup project-card__mockup-image">
+                            <img src="assets/project/customxtmx.png" alt="CustomXTMX project preview">
+                        </div>
+                        <div class="project-card__body">
+                            <h3>Custom x TMX 125 | Classic Custom Builds</h3>
+                            <p>A custom web project built with HTML, CSS, JavaScript, and Firebase for a responsive and interactive user experience.</p>
+                        </div>
+                    </article>
+                </a>
+            </div>
+            <button class="projects-carousel__arrow projects-carousel__arrow--right" type="button" aria-label="Scroll projects right">
+                <img src="assets/other/right.png" alt="" aria-hidden="true">
+            </button>
         </div>
     </section>
 
@@ -522,6 +553,9 @@ const scrollStage = document.querySelector('.scroll-stage');
         const menuToggle = document.querySelector('.menu-toggle');
         const menuOverlay = document.querySelector('.menu-overlay');
         const menuLinks = document.querySelectorAll('.menu-link');
+        const projectsGrid = document.querySelector('.projects-grid');
+        const projectsPrevButton = document.querySelector('.projects-carousel__arrow--left');
+        const projectsNextButton = document.querySelector('.projects-carousel__arrow--right');
         const projectCardLinks = document.querySelectorAll('.project-card-link');
         const skillCards = document.querySelectorAll('.skill-card');
         const skillsGroups = document.querySelector('.skills-groups');
@@ -769,6 +803,45 @@ const scrollStage = document.querySelector('.scroll-stage');
                 }
             });
         });
+
+        function updateProjectCarouselArrows() {
+            if (!projectsGrid || !projectsPrevButton || !projectsNextButton) return;
+
+            const maxScrollLeft = Math.max(projectsGrid.scrollWidth - projectsGrid.clientWidth, 0);
+            const scrollLeft = projectsGrid.scrollLeft;
+            const atStart = scrollLeft <= 8;
+            const atEnd = scrollLeft >= maxScrollLeft - 8;
+            const hasOverflow = maxScrollLeft > 8;
+
+            projectsPrevButton.classList.toggle('is-hidden', !hasOverflow || atStart);
+            projectsNextButton.classList.toggle('is-hidden', !hasOverflow || atEnd);
+        }
+
+        function scrollProjects(direction) {
+            if (!projectsGrid) return;
+
+            const firstCard = projectsGrid.querySelector('.project-card-link');
+            const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : projectsGrid.clientWidth * 0.85;
+            const gapValue = window.getComputedStyle(projectsGrid).columnGap || window.getComputedStyle(projectsGrid).gap || '0';
+            const gap = Number.parseFloat(gapValue) || 0;
+
+            projectsGrid.scrollBy({
+                left: direction * (cardWidth + gap),
+                behavior: 'smooth'
+            });
+        }
+
+        projectsPrevButton?.addEventListener('click', () => {
+            scrollProjects(-1);
+        });
+
+        projectsNextButton?.addEventListener('click', () => {
+            scrollProjects(1);
+        });
+
+        projectsGrid?.addEventListener('scroll', updateProjectCarouselArrows, { passive: true });
+        window.addEventListener('resize', updateProjectCarouselArrows);
+        updateProjectCarouselArrows();
 
         function syncMenuSongState() {
             menuSongButtons.forEach((button) => {
@@ -1105,4 +1178,3 @@ const scrollStage = document.querySelector('.scroll-stage');
     </script>
 </body>
 </html>
-
