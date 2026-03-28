@@ -1297,14 +1297,14 @@ body.cursor-pressed .brand-cursor {
 }
 
 .projects-showcase {
-    padding: 7rem 1.25rem 5rem;
+    padding: 6rem 1.5rem 4.5rem;
     background: #050005;
     color: #f7eef7;
 }
 
 .projects-showcase__intro {
-    width: min(1100px, 100%);
-    margin: 0 auto 2.5rem;
+    width: min(1230px, 100%);
+    margin: 0 auto 2rem;
 }
 
 .projects-label {
@@ -1317,15 +1317,15 @@ body.cursor-pressed .brand-cursor {
 
 .projects-showcase__intro h2 {
     color: #b300b3;
-    font-size: clamp(3rem, 6vw, 4.5rem);
-    line-height: 0.95;
-    margin-bottom: 0.9rem;
+    font-size: clamp(3rem, 5.2vw, 4rem);
+    line-height: 0.98;
+    margin-bottom: 0.7rem;
 }
 
 .projects-showcase__intro p {
-    max-width: 860px;
-    font-size: clamp(1.35rem, 2.6vw, 2rem);
-    line-height: 1.45;
+    max-width: 780px;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    line-height: 1.4;
 }
 
 .projects-showcase__intro span {
@@ -1334,7 +1334,7 @@ body.cursor-pressed .brand-cursor {
 
 .projects-carousel {
     position: relative;
-    width: min(1240px, 100%);
+    width: min(1320px, 100%);
     margin: 0 auto;
     overflow: visible;
 }
@@ -1344,12 +1344,12 @@ body.cursor-pressed .brand-cursor {
     margin: 0;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: min(36rem, 82vw);
+    grid-auto-columns: min(31.5rem, 31vw);
     grid-template-columns: none;
-    gap: 2rem;
+    gap: 1.7rem;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 0 2.9rem 0.75rem;
+    padding: 0 1.25rem 0.75rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -1416,10 +1416,10 @@ body.cursor-pressed .brand-cursor {
     --card-rotate-y: 0deg;
     --card-glow-x: 50%;
     --card-glow-y: 50%;
-    min-height: 360px;
+    min-height: 350px;
     width: 100%;
     margin: 0;
-    border-radius: 28px;
+    border-radius: 24px;
     overflow: hidden;
     color: #ffffff;
     box-shadow: 0 26px 44px rgba(0, 0, 0, 0.14);
@@ -1507,8 +1507,8 @@ body.cursor-pressed .brand-cursor {
 
 .project-card__stack img {
     position: absolute;
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
     padding: 0.5rem;
     border-radius: 18px;
@@ -1520,41 +1520,41 @@ body.cursor-pressed .brand-cursor {
 }
 
 .project-card__stack img:nth-child(1) {
-    top: 4.7rem;
-    left: 1.6rem;
+    top: 4.1rem;
+    left: 1.4rem;
 }
 
 .project-card__stack img:nth-child(2) {
-    top: 10.2rem;
-    left: 1rem;
+    top: 8.6rem;
+    left: 0.95rem;
     transform: rotate(-20deg);
 }
 
 .project-card__stack img:nth-child(3) {
-    top: 15rem;
-    left: 4.1rem;
+    top: 13rem;
+    left: 3.5rem;
     transform: rotate(-20deg);
 }
 
 .project-card__stack img:nth-child(4) {
-    top: 8.9rem;
-    left: 9.8rem;
+    top: 7.8rem;
+    left: 8.6rem;
     transform: rotate(-14deg);
 }
 
 .project-card__stack img:nth-child(5) {
-    top: 15.2rem;
-    right: 4.4rem;
+    top: 13.2rem;
+    right: 3.8rem;
     transform: rotate(-16deg);
 }
 
 .project-card__mockup {
     position: absolute;
     right: 0.85rem;
-    top: 4.25rem;
-    width: 58%;
-    height: 64%;
-    border-radius: 22px;
+    top: 3.75rem;
+    width: 60%;
+    height: 62%;
+    border-radius: 20px;
     transform: rotate(-10deg);
     box-shadow: 0 24px 28px rgba(0, 0, 0, 0.26);
     overflow: hidden;
@@ -1577,7 +1577,7 @@ body.cursor-pressed .brand-cursor {
 .project-card__body {
     position: absolute;
     inset: 0;
-    padding: 1rem 1rem 1.05rem;
+    padding: 0.95rem 1rem 1rem;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -1585,16 +1585,16 @@ body.cursor-pressed .brand-cursor {
 }
 
 .project-card__body h3 {
-    max-width: 78%;
-    font-size: clamp(1.15rem, 1.8vw, 1.9rem);
-    line-height: 1.1;
+    max-width: 72%;
+    font-size: clamp(1.05rem, 1.45vw, 1.5rem);
+    line-height: 1.15;
     margin-bottom: 0;
 }
 
 .project-card__body p {
-    max-width: 72%;
-    font-size: 0.98rem;
-    line-height: 1.35;
+    max-width: 70%;
+    font-size: 0.9rem;
+    line-height: 1.3;
     color: rgba(255, 255, 255, 0.94);
     margin: 0;
 }
