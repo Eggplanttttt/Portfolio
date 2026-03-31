@@ -1497,6 +1497,12 @@ body.cursor-pressed .brand-cursor {
         linear-gradient(160deg, #d7c8a4 0%, #b8a57a 52%, #8c7a52 100%);
 }
 
+.project-card-pinkblue {
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 28%),
+        linear-gradient(160deg, #ff7ccf 0%, #d45cff 38%, #6d88ff 72%, #4ab7ff 100%);
+}
+
 .project-card__stack {
     position: absolute;
     inset: 0;
