@@ -6,6 +6,7 @@
 
 html {
     scroll-behavior: smooth;
+    background: #050005;
 }
 
 body {
@@ -1334,7 +1335,7 @@ body.cursor-pressed .brand-cursor {
 
 .projects-carousel {
     position: relative;
-    width: min(1320px, 100%);
+    width: min(1200px, calc(100% - 10rem));
     margin: 0 auto;
     overflow: visible;
 }
@@ -1943,6 +1944,10 @@ body.cursor-pressed .brand-cursor {
 }
 
 @media (max-width: 960px) {
+    .projects-carousel {
+        width: 100%;
+    }
+
     .hero {
         grid-template-columns: 2fr;
         padding-top: 7rem;
