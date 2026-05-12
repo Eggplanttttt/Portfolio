@@ -1497,6 +1497,12 @@ body.cursor-pressed .brand-cursor {
         linear-gradient(160deg, #d7c8a4 0%, #b8a57a 52%, #8c7a52 100%);
 }
 
+.project-card-ecommerce {
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 28%),
+        linear-gradient(160deg, #2f2925 0%, #17110f 52%, #070403 100%);
+}
+
 .project-card-pinkblue {
     background:
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 28%),
