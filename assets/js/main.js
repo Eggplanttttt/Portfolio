@@ -341,13 +341,6 @@ const scrollStage = document.querySelector('.scroll-stage');
                 card.style.setProperty('--card-glow-y', '50%');
             });
 
-            link.addEventListener('click', (event) => {
-                const projectUrl = link.dataset.projectLink;
-
-                if (!projectUrl) {
-                    event.preventDefault();
-                }
-            });
         });
 
         function updateProjectCarouselArrows() {

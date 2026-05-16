@@ -1442,7 +1442,6 @@ body.cursor-pressed .brand-cursor {
 .project-card-link {
     display: block;
     perspective: 1400px;
-    cursor: pointer;
     min-width: 0;
     scroll-snap-align: center;
     scroll-snap-stop: always;
@@ -2821,7 +2820,8 @@ body.cursor-pressed .brand-cursor {
     letter-spacing: -0.035em;
 }
 
-.projects-showcase.is-expanded .projects-extra .project-card__preview span {
+.projects-showcase.is-expanded .projects-extra .project-card__preview span,
+.projects-showcase.is-expanded .projects-extra .project-card__preview a {
     min-height: 38px;
     padding: 0.55rem 0.8rem;
     font-size: 0.82rem;
@@ -2969,6 +2969,8 @@ body.cursor-pressed .brand-cursor {
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.015em;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .project-card__demo img {
@@ -3037,7 +3039,8 @@ body.cursor-pressed .brand-cursor {
     letter-spacing: -0.035em;
 }
 
-.project-card__preview span {
+.project-card__preview span,
+.project-card__preview a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3052,19 +3055,28 @@ body.cursor-pressed .brand-cursor {
     line-height: 1;
     letter-spacing: -0.015em;
     white-space: nowrap;
+    text-decoration: none;
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .project-card-link:hover .project-card__preview span,
+.project-card-link:hover .project-card__preview a,
 .project-card-link:focus-visible .project-card__preview span,
+.project-card-link:focus-visible .project-card__preview a,
 .project-card-link:focus-within .project-card__preview span {
     opacity: 1;
     transform: translateY(0);
 }
 
-.project-card__preview span img {
+.project-card-link:focus-within .project-card__preview a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card__preview span img,
+.project-card__preview a img {
     width: 1rem;
     height: 1rem;
     filter: invert(1);
@@ -3194,7 +3206,8 @@ body.cursor-pressed .brand-cursor {
         font-size: 1.1rem;
     }
 
-    .project-card__preview span {
+    .project-card__preview span,
+    .project-card__preview a {
         justify-self: start;
         min-height: 36px;
         padding: 0.5rem 0.75rem;
