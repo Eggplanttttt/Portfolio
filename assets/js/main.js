@@ -20,6 +20,7 @@ const scrollStage = document.querySelector('.scroll-stage');
         const worksFoldSection = document.querySelector('.works-fold-section');
         const collaborateSection = document.querySelector('.collaborate-section');
         const collaborateMarqueeSection = document.querySelector('.collaborate-marquee-section');
+        const collaborateMarqueeTitle = document.querySelector('.collaborate-marquee-title');
         const menuToggle = document.querySelector('.menu-toggle');
         const menuOverlay = document.querySelector('.menu-overlay');
         const menuLinks = document.querySelectorAll('.menu-link');
@@ -50,6 +51,7 @@ const scrollStage = document.querySelector('.scroll-stage');
         const menuSongButtons = document.querySelectorAll('.menu-song');
         const visitorCount = document.querySelector('#visitor-count');
         const introLoader = document.querySelector('.intro-loader');
+        const backToTopButton = document.querySelector('.back-to-top');
         let activeSkillCard = null;
         let currentTrack = {
             title: 'Back to December',
@@ -194,20 +196,83 @@ const scrollStage = document.querySelector('.scroll-stage');
         window.addEventListener('scroll', updateCollaborateSection, { passive: true });
         window.addEventListener('resize', updateCollaborateSection);
 
+        let collaborateMarqueeTarget = 0;
+        let collaborateMarqueeCurrent = 0;
+        let collaborateMarqueeFrame = null;
+
+        function animateCollaborateMarqueeSection() {
+            if (!collaborateMarqueeSection) {
+                collaborateMarqueeFrame = null;
+                return;
+            }
+
+            collaborateMarqueeCurrent += (collaborateMarqueeTarget - collaborateMarqueeCurrent) * 0.08;
+
+            if (Math.abs(collaborateMarqueeTarget - collaborateMarqueeCurrent) < 0.001) {
+                collaborateMarqueeCurrent = collaborateMarqueeTarget;
+            }
+
+            collaborateMarqueeSection.style.setProperty('--collaborate-marquee-progress', collaborateMarqueeCurrent.toFixed(3));
+
+            if (collaborateMarqueeCurrent !== collaborateMarqueeTarget) {
+                collaborateMarqueeFrame = window.requestAnimationFrame(animateCollaborateMarqueeSection);
+            } else {
+                collaborateMarqueeFrame = null;
+            }
+        }
+
         function updateCollaborateMarqueeSection() {
             if (!collaborateMarqueeSection) return;
 
             const rect = collaborateMarqueeSection.getBoundingClientRect();
-            const total = Math.max(collaborateMarqueeSection.offsetHeight - window.innerHeight, 1);
-            const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+            const progress = Math.min(Math.max((window.innerHeight - rect.top) / (window.innerHeight + rect.height), 0), 1);
 
-            collaborateMarqueeSection.style.setProperty('--collaborate-marquee-progress', progress.toFixed(3));
+            collaborateMarqueeTarget = progress;
+
+            if (collaborateMarqueeTitle) {
+                const titleRect = collaborateMarqueeTitle.getBoundingClientRect();
+                const titleProgress = Math.min(Math.max((window.innerHeight - titleRect.top) / (window.innerHeight + titleRect.height), 0), 1);
+                collaborateMarqueeSection.style.setProperty('--collaborate-title-progress', titleProgress.toFixed(3));
+            }
+
+            if (!collaborateMarqueeFrame) {
+                collaborateMarqueeFrame = window.requestAnimationFrame(animateCollaborateMarqueeSection);
+            }
         }
 
         updateCollaborateMarqueeSection();
         window.addEventListener('scroll', updateCollaborateMarqueeSection, { passive: true });
         window.addEventListener('resize', updateCollaborateMarqueeSection);
         updateVisitorCount();
+
+        function updateBackToTopButton() {
+            if (!backToTopButton) return;
+
+            backToTopButton.classList.toggle('is-visible', window.scrollY > 420);
+        }
+
+        updateBackToTopButton();
+        window.addEventListener('scroll', updateBackToTopButton, { passive: true });
+
+        backToTopButton?.addEventListener('click', () => {
+            const startY = window.scrollY;
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function scrollStep(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+                window.scrollTo(0, startY * (1 - easedProgress));
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(scrollStep);
+                }
+            }
+
+            window.requestAnimationFrame(scrollStep);
+        });
 
         desktopNavLinks.forEach((link) => {
             link.addEventListener('click', (event) => {
