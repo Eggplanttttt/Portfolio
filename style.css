@@ -771,10 +771,17 @@ body.cursor-pressed .brand-cursor {
 }
 
 .tagline-text {
+    display: inline;
+}
+
+.tagline-text::after {
+    content: "";
     display: inline-block;
-    min-height: 1.1em;
-    padding-right: 0.12em;
-    border-right: 3px solid currentColor;
+    width: 3px;
+    height: 0.9em;
+    margin-left: 0.12em;
+    background: currentColor;
+    vertical-align: -0.08em;
     animation: blinkCursor 0.85s step-end infinite;
 }
 
@@ -1991,12 +1998,12 @@ body.cursor-pressed .brand-cursor {
 @keyframes blinkCursor {
     0%,
     49% {
-        border-right-color: currentColor;
+        opacity: 1;
     }
 
     50%,
     100% {
-        border-right-color: transparent;
+        opacity: 0;
     }
 }
 
@@ -2324,7 +2331,7 @@ body.cursor-pressed .brand-cursor {
     .hero-image {
         position: absolute;
         right: 1.5rem;
-        bottom: 8.4rem;
+        bottom: 2.6rem;
         margin: 0;
         width: min(56vw, 282px);
         z-index: -1;
