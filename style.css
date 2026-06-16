@@ -1100,9 +1100,9 @@ body.cursor-pressed .brand-cursor {
 }
 
 .paint-scene h3 {
-    max-width: 11ch;
-    font-size: clamp(3rem, 9vw, 7rem);
-    line-height: 0.92;
+    max-width: min(92vw, 1180px);
+    font-size: clamp(2.8rem, 6.8vw, 6.1rem);
+    line-height: 0.98;
     font-weight: 700;
     letter-spacing: -0.04em;
     margin-bottom: 1rem;
@@ -2112,8 +2112,9 @@ body.cursor-pressed .brand-cursor {
     }
 
     .paint-scene h3 {
-        max-width: 12ch;
-        font-size: clamp(2.6rem, 10vw, 4.8rem);
+        max-width: 100%;
+        font-size: clamp(2.4rem, 8.2vw, 4.6rem);
+        line-height: 1;
     }
 
     .skills-row {
@@ -2430,6 +2431,7 @@ body.cursor-pressed .brand-cursor {
     }
 
     .paint-scene h3 {
+        max-width: 100%;
         font-size: 2.5rem;
     }
 
@@ -2985,6 +2987,28 @@ body.cursor-pressed .brand-cursor {
     font-weight: 700;
     line-height: 1.16;
     letter-spacing: -0.035em;
+}
+
+.project-card__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.project-card__status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0.28rem 0.5rem;
+    border: 1px solid rgba(255, 96, 96, 0.45);
+    border-radius: 999px;
+    background: rgba(255, 77, 77, 0.12);
+    color: #ff9f9f;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
 }
 
 .project-card__body p:not(.project-card__eyebrow) {

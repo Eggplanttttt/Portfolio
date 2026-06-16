@@ -52,6 +52,7 @@ const scrollStage = document.querySelector('.scroll-stage');
         const visitorCount = document.querySelector('#visitor-count');
         const introLoader = document.querySelector('.intro-loader');
         const backToTopButton = document.querySelector('.back-to-top');
+        const navClickSound = new Audio('assets/other/click-sound-for-gd.mp3');
         let activeSkillCard = null;
         let currentTrack = {
             title: 'Back to December',
@@ -69,6 +70,24 @@ const scrollStage = document.querySelector('.scroll-stage');
             'From idea to system, efficiently built',
             'Designing clean, scalable, and reliable systems'
         ];
+
+        navClickSound.preload = 'auto';
+        navClickSound.volume = 0.45;
+
+        function playNavClickSound() {
+            navClickSound.currentTime = 0;
+            navClickSound.play().catch(() => {});
+        }
+
+        document.addEventListener('click', (event) => {
+            const clickableElement = event.target.closest('a, button, [role="button"], input[type="button"], input[type="submit"]');
+
+            if (!clickableElement || clickableElement.disabled || clickableElement.getAttribute('aria-disabled') === 'true') {
+                return;
+            }
+
+            playNavClickSound();
+        });
 
         function hideIntroLoader() {
             if (!introLoader || introLoader.classList.contains('is-hidden')) {
