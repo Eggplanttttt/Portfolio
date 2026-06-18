@@ -1,6 +1,22 @@
 ﻿import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js';
 import { getFirestore, doc, getDoc, setDoc, increment, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
 
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+function scrollToPageTop() {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = previousScrollBehavior;
+}
+
+scrollToPageTop();
+window.addEventListener('pageshow', scrollToPageTop);
+
 const firebaseConfig = {
     apiKey: "AIzaSyDeGBjAiqj4V9rJh5S81PUbhyZkuJsvdAA",
     authDomain: "my-portfolio-ezekiel.firebaseapp.com",
