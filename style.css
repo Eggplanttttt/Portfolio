@@ -1091,7 +1091,7 @@ body.cursor-pressed .brand-cursor {
 .paint-scene {
     display: grid;
     align-content: end;
-    padding: 0 5.5vw 8vh;
+    padding: 26vh 5.5vw max(8vh, 7.25rem);
     background:
         radial-gradient(circle at top left, rgba(179, 0, 179, 0.18), transparent 28%),
         linear-gradient(180deg, #1a001a 0%, #4d004d 34%, #000000 96%);
@@ -1107,14 +1107,7 @@ body.cursor-pressed .brand-cursor {
     letter-spacing: -0.04em;
     margin-bottom: 1rem;
     opacity: calc(1 - var(--scroll-progress) * 0.3);
-    transform: translateY(calc(var(--scroll-progress) * -2vh));
-}
-
-.paint-scene p:last-child {
-    max-width: 540px;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    opacity: calc(0.82 - var(--scroll-progress) * 0.18);
+    transform: translateY(calc(10vh + var(--scroll-progress) * -2vh));
 }
 
 .next-section {
@@ -2108,7 +2101,7 @@ body.cursor-pressed .brand-cursor {
     }
 
     .paint-scene {
-        padding: 0 1.5rem 7vh;
+        padding: 22vh 1.5rem max(7vh, 6.5rem);
     }
 
     .paint-scene h3 {
@@ -2433,10 +2426,6 @@ body.cursor-pressed .brand-cursor {
     .paint-scene h3 {
         max-width: 100%;
         font-size: 2.5rem;
-    }
-
-    .paint-scene p:last-child {
-        font-size: 0.95rem;
     }
 
     .skills-intro {
@@ -2908,6 +2897,32 @@ body.cursor-pressed .brand-cursor {
     color: inherit;
     scroll-snap-align: none;
     scroll-snap-stop: normal;
+}
+
+.projects-showcase__intro.reveal-from-bottom,
+.project-card-link.reveal-from-bottom {
+    opacity: 0;
+    transform: translateY(120px);
+    transition:
+        opacity 0.12s linear,
+        transform 0.12s linear;
+    transition-delay: var(--project-reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.projects-showcase__intro.reveal-from-bottom.is-visible,
+.project-card-link.reveal-from-bottom.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .projects-showcase__intro.reveal-from-bottom,
+    .project-card-link.reveal-from-bottom {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .project-card {

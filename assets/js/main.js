@@ -47,6 +47,7 @@ const scrollStage = document.querySelector('.scroll-stage');
         const projectsNextButton = document.querySelector('.projects-carousel__arrow--right');
         const projectCardLinks = document.querySelectorAll('.project-card-link');
         const projectsShowcase = document.querySelector('.projects-showcase');
+        const projectsIntro = document.querySelector('.projects-showcase__intro');
         const projectsToggle = document.querySelector('.projects-toggle');
         const skillCards = document.querySelectorAll('.skill-card');
         const skillsGroups = document.querySelector('.skills-groups');
@@ -442,6 +443,54 @@ const scrollStage = document.querySelector('.scroll-stage');
             });
 
         });
+
+        function initProjectReveal() {
+            const revealTargets = [
+                ...(projectsIntro ? [projectsIntro] : []),
+                ...projectCardLinks
+            ];
+
+            if (!revealTargets.length) return;
+
+            revealTargets.forEach((element) => {
+                element.classList.add('reveal-from-bottom');
+            });
+
+            function setRevealProgress(element) {
+                const rect = element.getBoundingClientRect();
+                const start = window.innerHeight * 0.92;
+                const end = window.innerHeight * 0.42;
+                const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
+                const offset = (1 - progress) * 120;
+
+                element.style.opacity = progress.toFixed(3);
+                element.style.transform = `translateY(${offset.toFixed(1)}px)`;
+                element.classList.toggle('is-visible', progress >= 1);
+            }
+
+            function updateProjectReveal() {
+                revealTargets.forEach((element) => {
+                    setRevealProgress(element);
+                });
+            }
+
+            let revealFrame = null;
+
+            function requestProjectRevealUpdate() {
+                if (revealFrame) return;
+
+                revealFrame = window.requestAnimationFrame(() => {
+                    revealFrame = null;
+                    updateProjectReveal();
+                });
+            }
+
+            updateProjectReveal();
+            window.addEventListener('scroll', requestProjectRevealUpdate, { passive: true });
+            window.addEventListener('resize', requestProjectRevealUpdate);
+        }
+
+        initProjectReveal();
 
         function updateProjectCarouselArrows() {
             if (!projectsGrid || !projectsPrevButton || !projectsNextButton) return;
