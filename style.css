@@ -715,7 +715,7 @@ body.cursor-pressed .brand-cursor {
     width: 100%;
     padding: 0.9rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
+    border-radius: 28px;
     background: rgba(255, 255, 255, 0.04);
     color: rgba(255, 255, 255, 0.92);
     text-align: left;
@@ -756,19 +756,9 @@ body.cursor-pressed .brand-cursor {
     isolation: isolate;
 }
 
-/* One softly faded photo is shown at a time behind the hero content. */
+/* Cycle through the hero photos, excluding the removed research-defense image. */
 .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--hero-background-image, url("assets/bg-pic/579549187_1105946728124786_6311742506946919213_n.jpg"));
-    background-position: var(--hero-background-position, center);
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: saturate(0.7);
-    opacity: 0.25;
-    pointer-events: none;
-    z-index: 0;
+    display: none;
 }
 
 .hero::after {
@@ -791,7 +781,7 @@ body.cursor-pressed .brand-cursor {
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     align-self: center;
 }
 
@@ -835,6 +825,9 @@ body.cursor-pressed .brand-cursor {
 
 .tagline-text {
     display: inline;
+    -webkit-text-stroke: 0.75px rgba(255, 255, 255, 0.9);
+    paint-order: stroke fill;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.45);
 }
 
 .tagline-text::after {
@@ -964,8 +957,8 @@ body.cursor-pressed .brand-cursor {
 
 .hero-image {
     position: absolute;
-    right: 10vw;
-    bottom: -170px;
+    right: 5vw;
+    bottom: -167px;
     width: min(38vw, 760px);
     display: flex;
     justify-content: flex-end;
@@ -974,7 +967,78 @@ body.cursor-pressed .brand-cursor {
     z-index: 4;
 }
 
+.hero-photo-stack {
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    width: min(58vw, 760px);
+    aspect-ratio: 16 / 9;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-photo-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    box-shadow: 0 18px 42px rgba(20, 0, 20, 0.22);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.72);
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+}
+
+.hero-photo-card img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+}
+
+.hero-photo-card.is-portrait img {
+    object-fit: contain;
+}
+
+.hero-photo-card.is-active,
+.hero-photo-card.is-previous,
+.hero-photo-card.is-next {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hero-photo-card.is-active {
+    z-index: 3;
+    opacity: 0.6;
+    transform: translateX(0) scale(1);
+}
+
+.hero-photo-card.is-previous {
+    z-index: 1;
+    opacity: 0.32;
+    transform: translateX(-28%) scale(0.8);
+    filter: brightness(0.82);
+}
+
+.hero-photo-card.is-next {
+    z-index: 2;
+    opacity: 0.32;
+    transform: translateX(28%) scale(0.8);
+    filter: brightness(0.82);
+}
+
 .hero-carousel-dots {
+    display: none;
     position: absolute;
     left: 50%;
     bottom: 4rem;
@@ -2319,6 +2383,10 @@ body.cursor-pressed .brand-cursor {
 }
 
 @media (max-width: 640px) {
+    .hero-photo-stack {
+        display: none;
+    }
+
     .site-header {
         padding: 1rem 0.9rem;
     }

@@ -34,6 +34,7 @@ const firestoreDb = firebaseApp ? getFirestore(firebaseApp) : null;
 const scrollStage = document.querySelector('.scroll-stage');
         const hero = document.querySelector('.hero');
         const heroCarouselDots = document.querySelector('.hero-carousel-dots');
+        const heroPhotoStack = document.querySelector('.hero-photo-stack');
         const taglineText = document.querySelector('.tagline-text');
         const skillsIntroText = document.querySelector('.skills-intro p');
         const worksFoldSection = document.querySelector('.works-fold-section');
@@ -83,12 +84,12 @@ const scrollStage = document.querySelector('.scroll-stage');
         };
         const taglinePhrases = [
             'Build smart. Scale fast. Deliver value.',
-            'Turning ideas into scalable digital solutions',
-            'Code with purpose, build with impact',
-            'Simple solutions for complex digital problems',
-            'Creating systems that make life easier',
-            'From idea to system, efficiently built',
-            'Designing clean, scalable, and reliable systems'
+            'Turning ideas into scalable digital solutions.',
+            'Code with purpose, build with impact.',
+            'Simple solutions for complex digital problems.',
+            'Creating systems that make life easier.',
+            'From idea to system, efficiently built.',
+            'Designing clean, scalable, and reliable systems.'
         ];
         const heroBackgroundPhotos = [
             'assets/bg-pic/579549187_1105946728124786_6311742506946919213_n.jpg',
@@ -96,6 +97,9 @@ const scrollStage = document.querySelector('.scroll-stage');
             'assets/bg-pic/727542319_4329437703982246_6227268017165817076_n.jpg',
             'assets/bg-pic/727542319_4517738071886619_838941891574633351_n.jpg',
             'assets/bg-pic/727613262_1020435270943514_7802878478507018108_n.jpg',
+            'assets/bg-pic/727050495_957458370674489_489731668981895557_n.jpg',
+            'assets/bg-pic/725172618_847331821487807_3216166992163305311_n.jpg',
+            'assets/bg-pic/590228946_693775343522908_4938229024197139984_n.jpg',
             'assets/bg-pic/728543661_1006366451995678_1933816842049622408_n.jpg'
         ];
         let heroBackgroundIndex = 0;
@@ -111,16 +115,21 @@ const scrollStage = document.querySelector('.scroll-stage');
             const selectedIndex = ((index % heroBackgroundPhotos.length) + heroBackgroundPhotos.length) % heroBackgroundPhotos.length;
             const photo = heroBackgroundPhotos[selectedIndex];
             hero.style.setProperty('--hero-background-image', `url("${photo}")`);
-            hero.style.setProperty(
-                '--hero-background-position',
-                photo.includes('728543661_1006366451995678') ? 'calc(50% - 20vw) center' : 'center'
-            );
+            hero.style.setProperty('--hero-background-position', 'center');
             heroBackgroundIndex = (selectedIndex + 1) % heroBackgroundPhotos.length;
 
             heroCarouselDots?.querySelectorAll('.hero-carousel-dot').forEach((dot, dotIndex) => {
                 const isActive = dotIndex === selectedIndex;
                 dot.classList.toggle('is-active', isActive);
                 dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+
+            heroPhotoStack?.querySelectorAll('.hero-photo-card').forEach((card, cardIndex) => {
+                const offset = (cardIndex - selectedIndex + heroBackgroundPhotos.length) % heroBackgroundPhotos.length;
+                card.classList.toggle('is-active', offset === 0);
+                card.classList.toggle('is-next', offset === 1);
+                card.classList.toggle('is-previous', offset === heroBackgroundPhotos.length - 1);
+                card.setAttribute('aria-hidden', offset > 1 && offset < heroBackgroundPhotos.length - 1 ? 'true' : 'false');
             });
         }
 
@@ -140,6 +149,28 @@ const scrollStage = document.querySelector('.scroll-stage');
                     startHeroBackgroundTimer();
                 });
                 heroCarouselDots.appendChild(dot);
+            });
+        }
+
+        if (heroPhotoStack) {
+            heroBackgroundPhotos.forEach((photo, index) => {
+                const card = document.createElement('button');
+                const image = document.createElement('img');
+                card.type = 'button';
+                card.className = 'hero-photo-card';
+                card.setAttribute('aria-label', `Show background image ${index + 1}`);
+                image.alt = '';
+                image.addEventListener('load', () => {
+                    card.classList.toggle('is-portrait', image.naturalHeight > image.naturalWidth);
+                });
+                card.style.setProperty('--hero-photo-image', `url("${photo}")`);
+                image.src = photo;
+                card.appendChild(image);
+                card.addEventListener('click', () => {
+                    showHeroBackground(index);
+                    startHeroBackgroundTimer();
+                });
+                heroPhotoStack.appendChild(card);
             });
         }
 
@@ -1020,4 +1051,3 @@ const scrollStage = document.querySelector('.scroll-stage');
         } else {
             window.addEventListener('load', hideIntroLoader, { once: true });
         }
-
