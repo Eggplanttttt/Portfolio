@@ -32,7 +32,10 @@ const firebaseApp = hasFirebaseConfig ? (getApps().length ? getApps()[0] : initi
 const firestoreDb = firebaseApp ? getFirestore(firebaseApp) : null;
 
 const scrollStage = document.querySelector('.scroll-stage');
+        const hero = document.querySelector('.hero');
+        const heroCarouselDots = document.querySelector('.hero-carousel-dots');
         const taglineText = document.querySelector('.tagline-text');
+        const skillsIntroText = document.querySelector('.skills-intro p');
         const worksFoldSection = document.querySelector('.works-fold-section');
         const collaborateSection = document.querySelector('.collaborate-section');
         const collaborateMarqueeSection = document.querySelector('.collaborate-marquee-section');
@@ -87,9 +90,177 @@ const scrollStage = document.querySelector('.scroll-stage');
             'From idea to system, efficiently built',
             'Designing clean, scalable, and reliable systems'
         ];
+        const heroBackgroundPhotos = [
+            'assets/bg-pic/579549187_1105946728124786_6311742506946919213_n.jpg',
+            'assets/bg-pic/724281844_970639135795156_5735761625985478262_n.jpg',
+            'assets/bg-pic/727542319_4329437703982246_6227268017165817076_n.jpg',
+            'assets/bg-pic/727542319_4517738071886619_838941891574633351_n.jpg',
+            'assets/bg-pic/727613262_1020435270943514_7802878478507018108_n.jpg',
+            'assets/bg-pic/728543661_1006366451995678_1933816842049622408_n.jpg'
+        ];
+        let heroBackgroundIndex = 0;
+        let heroBackgroundTimer = null;
+        let skillsScrambleFrame = null;
 
         navClickSound.preload = 'auto';
         navClickSound.volume = 0.45;
+
+        function showHeroBackground(index) {
+            if (!hero || !heroBackgroundPhotos.length) return;
+
+            const selectedIndex = ((index % heroBackgroundPhotos.length) + heroBackgroundPhotos.length) % heroBackgroundPhotos.length;
+            const photo = heroBackgroundPhotos[selectedIndex];
+            hero.style.setProperty('--hero-background-image', `url("${photo}")`);
+            hero.style.setProperty(
+                '--hero-background-position',
+                photo.includes('728543661_1006366451995678') ? 'calc(50% - 20vw) center' : 'center'
+            );
+            heroBackgroundIndex = (selectedIndex + 1) % heroBackgroundPhotos.length;
+
+            heroCarouselDots?.querySelectorAll('.hero-carousel-dot').forEach((dot, dotIndex) => {
+                const isActive = dotIndex === selectedIndex;
+                dot.classList.toggle('is-active', isActive);
+                dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+        }
+
+        function startHeroBackgroundTimer() {
+            window.clearInterval(heroBackgroundTimer);
+            heroBackgroundTimer = window.setInterval(() => showHeroBackground(heroBackgroundIndex), 5000);
+        }
+
+        if (heroCarouselDots) {
+            heroBackgroundPhotos.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'hero-carousel-dot';
+                dot.setAttribute('aria-label', `Show background image ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    showHeroBackground(index);
+                    startHeroBackgroundTimer();
+                });
+                heroCarouselDots.appendChild(dot);
+            });
+        }
+
+        showHeroBackground(0);
+        startHeroBackgroundTimer();
+
+        function prepareSkillsTextScramble() {
+            if (!skillsIntroText) return [];
+
+            const originalText = skillsIntroText.textContent.replace(/\s+/g, ' ').trim();
+            skillsIntroText.setAttribute('aria-label', originalText);
+
+            const textNodes = [];
+            const walker = document.createTreeWalker(skillsIntroText, NodeFilter.SHOW_TEXT);
+            let node;
+
+            while ((node = walker.nextNode())) {
+                if (node.nodeValue.trim()) textNodes.push(node);
+            }
+
+            const characters = [];
+            textNodes.forEach((textNode) => {
+                const fragment = document.createDocumentFragment();
+                let word = null;
+
+                function appendWord() {
+                    if (!word) return;
+                    fragment.appendChild(word);
+                    word = null;
+                }
+
+                [...textNode.nodeValue].forEach((character) => {
+                    if (/\s/.test(character)) {
+                        appendWord();
+                        fragment.appendChild(document.createTextNode(character));
+                        return;
+                    }
+
+                    if (!word) {
+                        word = document.createElement('span');
+                        word.className = 'skills-scramble-word';
+                    }
+
+                    const characterSpan = document.createElement('span');
+                    characterSpan.className = 'skills-scramble-char';
+                    characterSpan.dataset.character = character;
+                    characterSpan.setAttribute('aria-hidden', 'true');
+                    characterSpan.textContent = character;
+                    word.appendChild(characterSpan);
+                    characters.push(characterSpan);
+                });
+
+                appendWord();
+                textNode.replaceWith(fragment);
+            });
+
+            return characters;
+        }
+
+        function animateSkillsTextScramble(characters) {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const initialJumbleDuration = 420;
+            const characterDelay = 28;
+            const duration = initialJumbleDuration + characters.length * characterDelay;
+            const startTime = performance.now();
+
+            if (skillsScrambleFrame) window.cancelAnimationFrame(skillsScrambleFrame);
+            skillsIntroText?.classList.add('is-scrambling');
+
+            function frame(now) {
+                const elapsed = now - startTime;
+                const settledCharacters = Math.max(0, Math.floor((elapsed - initialJumbleDuration) / characterDelay));
+
+                characters.forEach((character, index) => {
+                    const finalCharacter = character.dataset.character;
+                    const isSettled = index < settledCharacters;
+                    character.classList.toggle('is-settled', isSettled);
+                    character.textContent = isSettled
+                        ? finalCharacter
+                        : letters[Math.floor(Math.random() * letters.length)];
+                });
+
+                if (elapsed < duration) {
+                    skillsScrambleFrame = window.requestAnimationFrame(frame);
+                } else {
+                    characters.forEach((character) => {
+                        character.textContent = character.dataset.character;
+                        character.classList.add('is-settled');
+                    });
+                    skillsIntroText?.classList.remove('is-scrambling');
+                    skillsScrambleFrame = null;
+                }
+            }
+
+            skillsScrambleFrame = window.requestAnimationFrame(frame);
+        }
+
+        // A standalone fallback in index.html owns this animation when the main
+        // module cannot load (for example, if its remote Firebase imports fail).
+        const skillsScrambleCharacters = skillsIntroText?.dataset.scrambleInitialized
+            ? []
+            : prepareSkillsTextScramble();
+        if (skillsIntroText && skillsScrambleCharacters.length) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                skillsScrambleCharacters.forEach((character) => character.classList.add('is-settled'));
+            } else {
+                const skillsScrambleObserver = new IntersectionObserver((entries, observer) => {
+                    if (!entries.some((entry) => entry.isIntersecting)) return;
+
+                    animateSkillsTextScramble(skillsScrambleCharacters);
+                    observer.disconnect();
+                }, {
+                    // The animation begins as soon as the paragraph reaches the lower
+                    // portion of the viewport, exactly where it first becomes readable.
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -10% 0px'
+                });
+
+                skillsScrambleObserver.observe(skillsIntroText);
+            }
+        }
 
         function playNavClickSound() {
             navClickSound.currentTime = 0;

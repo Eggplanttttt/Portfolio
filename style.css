@@ -753,6 +753,22 @@ body.cursor-pressed .brand-cursor {
     padding: 6rem 5.5vw 0;
     overflow: visible;
     z-index: 2;
+    isolation: isolate;
+}
+
+/* One softly faded photo is shown at a time behind the hero content. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-background-image, url("assets/bg-pic/579549187_1105946728124786_6311742506946919213_n.jpg"));
+    background-position: var(--hero-background-position, center);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: saturate(0.7);
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .hero::after {
@@ -766,8 +782,8 @@ body.cursor-pressed .brand-cursor {
         180deg,
         rgba(240, 192, 228, 0) 0%,
         rgba(188, 84, 176, 0.14) 42%,
-        rgba(76, 0, 76, 0.42) 72%,
-        #0b020b 100%
+        rgba(128, 0, 128, 0.62) 72%,
+        #800080 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -958,6 +974,40 @@ body.cursor-pressed .brand-cursor {
     z-index: 4;
 }
 
+.hero-carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 4rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    transform: translateX(-50%);
+}
+
+.hero-carousel-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(27, 0, 27, 0.25);
+    cursor: pointer;
+    transition: width 0.22s ease, background 0.22s ease, transform 0.22s ease;
+}
+
+.hero-carousel-dot:hover,
+.hero-carousel-dot:focus-visible {
+    transform: scale(1.15);
+    outline: none;
+}
+
+.hero-carousel-dot.is-active {
+    width: 26px;
+    background: #ffffff;
+}
+
 .hero-image img {
     width: 100%;
     height: auto;
@@ -1138,9 +1188,27 @@ body.cursor-pressed .brand-cursor {
     color: #f6eef6;
 }
 
-.skills-intro span {
+.skills-intro__highlight {
     color: #b300b3;
     font-weight: 600;
+}
+
+.skills-scramble-char {
+    display: inline-block;
+    min-width: 0.08em;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: baseline;
+    transition: opacity 300ms ease, filter 300ms ease;
+}
+
+.skills-scramble-word {
+    white-space: nowrap;
+}
+
+.skills-intro.is-scrambling .skills-scramble-char:not(.is-settled) {
+    opacity: 0.28;
+    filter: blur(1.5px);
 }
 
 .skills-groups {
@@ -1210,6 +1278,54 @@ body.cursor-pressed .brand-cursor {
 .skill-card:focus-visible {
     outline: 2px solid rgba(240, 192, 228, 0.95);
     outline-offset: 4px;
+}
+
+/* Keep the complete skills overview comfortably visible on laptop/desktop screens. */
+@media (min-width: 641px) and (max-height: 900px) {
+    .next-section {
+        padding: 3.5rem 5.5vw;
+    }
+
+    .skills-intro {
+        margin-bottom: 1.5rem;
+    }
+
+    .skills-intro p {
+        font-size: clamp(1.85rem, 3vw, 2.7rem);
+        line-height: 1.22;
+    }
+
+    .skills-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 3rem;
+        row-gap: 1.25rem;
+    }
+
+    .skills-row {
+        display: contents;
+    }
+
+    .skills-group-wide {
+        grid-column: auto;
+    }
+
+    .skills-group h3 {
+        margin-bottom: 0.65rem;
+        font-size: 0.8rem;
+    }
+
+    .skills-grid {
+        gap: 0.75rem;
+    }
+
+    .skill-card,
+    .skills-grid-small .skill-card {
+        width: 72px;
+        height: 72px;
+        min-width: 72px;
+        padding: 0.7rem;
+        border-radius: 15px;
+    }
 }
 
 .skill-tooltip {
@@ -2384,11 +2500,11 @@ body.cursor-pressed .brand-cursor {
 
     .hero-image {
         position: absolute;
-        right: 1.5rem;
-        bottom: 2.6rem;
+        right: 0rem;
+        bottom: 0rem;
         margin: 0;
-        width: min(56vw, 282px);
-        z-index: -1;
+        width: min(60vw, 262px);
+        z-index: 2;
         opacity: 0.98;
     }
 
@@ -2398,7 +2514,7 @@ body.cursor-pressed .brand-cursor {
 
     .scroll-stage {
         height: 175vh;
-        margin-top: -2.5rem;
+        margin-top: 0;
     }
 
     .paint-stroke {

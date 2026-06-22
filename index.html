@@ -176,6 +176,8 @@
         <div class="hero-image">
             <img src="assets/other/profile2.3.png" alt="Ezekiel Cadiz portrait">
         </div>
+
+        <div class="hero-carousel-dots" aria-label="Choose hero background"></div>
     </section>
 
     <section class="scroll-stage" id="about" aria-label="Portfolio scroll animation">
@@ -197,9 +199,9 @@
         <div class="next-section__content">
             <div class="skills-intro">
                 <p>
-                    I build <span>full stack systems </span>with
-                    <span>Laravel</span> and <span>modern web technologies</span>, focusing on <span>secure </span>,
-                    updated <span>user-centered solutions</span>.
+                    I build <span class="skills-intro__highlight">full stack systems </span>with
+                    <span class="skills-intro__highlight">Laravel</span> and <span class="skills-intro__highlight">modern web technologies</span>, focusing on <span class="skills-intro__highlight">secure </span>,
+                    updated <span class="skills-intro__highlight">user-centered solutions</span>.
                 </p>
             </div>
 
@@ -363,7 +365,7 @@
             <p class="projects-label">Projects</p>
             <h2>My Works</h2>
             <p>
-                I have independently built many <span>full-stack</span> projects, handling the
+                I have independently built <span id="project-count-word">eight</span> <span>full-stack</span> projects, handling the
                 <span>frontend</span>, <span>backend</span>, <span>APIs</span>, <span>security</span>,
                 <span>database</span>, and <span>modern best practices</span>.
             </p>
@@ -421,7 +423,7 @@
 
             <div class="project-card-link projects-extra" data-project-link="https://e-pacd.online/" aria-label="E-PACD project">
                 <article class="project-card">
-                    <div class="project-card__body"><p class="project-card__eyebrow">Featured Work</p><h3>E-PACD - Electronic Public Assistance and Complaint Desk</h3><p>A full-stack public service platform with complaint handling, email workflows, role-based access, security, and modern deployment.</p><div class="project-card__stack" aria-label="Project technologies"><span>PHP</span><span>Laravel</span><span>Resend</span><span>Railway</span></div></div>
+                    <div class="project-card__body"><p class="project-card__eyebrow">Featured Work</p><h3 class="project-card__title">E-PACD - Electronic Public Assistance and Complaint Desk <span class="project-card__status">DOWN</span></h3><p>A full-stack public service platform with complaint handling, email workflows, role-based access, security, and modern deployment.</p><div class="project-card__stack" aria-label="Project technologies"><span>PHP</span><span>Laravel</span><span>Resend</span><span>Railway</span></div></div>
                     <div class="project-card__mockup project-card__mockup-image"><img src="assets/project/e-pacd.png" alt="E-PACD project preview"><div class="project-card__preview"><div><p>Featured Project</p><h4>E-PACD - Electronic Public Assistance and Complaint Desk</h4></div><a href="https://e-pacd.online/" target="_blank" rel="noopener noreferrer">View Project <img src="assets/other/external-link-svgrepo-com.svg" alt="" aria-hidden="true"></a></div></div>
                 </article>
             </div>
@@ -525,5 +527,133 @@
         <span aria-hidden="true"></span>
     </button>
     <script type="module" src="assets/js/main.js"></script>
+    <script>
+        (() => {
+            const text = document.querySelector('.skills-intro p');
+            if (!text) return;
+
+            text.dataset.scrambleInitialized = 'true';
+            text.setAttribute('aria-label', text.textContent.replace(/\s+/g, ' ').trim());
+            const characters = [];
+            const textNodes = [];
+            const walker = document.createTreeWalker(text, NodeFilter.SHOW_TEXT);
+            let node;
+
+            while ((node = walker.nextNode())) {
+                if (node.nodeValue.trim()) textNodes.push(node);
+            }
+
+            textNodes.forEach((textNode) => {
+                const fragment = document.createDocumentFragment();
+                let word;
+                const appendWord = () => {
+                    if (word) fragment.appendChild(word);
+                    word = null;
+                };
+
+                [...textNode.nodeValue].forEach((character) => {
+                    if (/\s/.test(character)) {
+                        appendWord();
+                        fragment.append(document.createTextNode(character));
+                        return;
+                    }
+
+                    if (!word) {
+                        word = document.createElement('span');
+                        word.className = 'skills-scramble-word';
+                    }
+
+                    const letter = document.createElement('span');
+                    letter.className = 'skills-scramble-char';
+                    letter.dataset.character = character;
+                    letter.setAttribute('aria-hidden', 'true');
+                    letter.textContent = character;
+                    word.appendChild(letter);
+                    characters.push(letter);
+                });
+                appendWord();
+                textNode.replaceWith(fragment);
+            });
+
+            let hasPlayed = false;
+            const animate = () => {
+                if (hasPlayed) return;
+                hasPlayed = true;
+                const symbols = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const started = performance.now();
+                const words = [...new Set(characters.map((letter) => letter.closest('.skills-scramble-word')))];
+                const scrambleAllWordsFor = 130;
+                const revealWordEvery = 105;
+                const caesarShift = (value, shift) => value.replace(/[A-Za-z]/g, (character) => {
+                    const base = character >= 'a' && character <= 'z' ? 97 : 65;
+                    return String.fromCharCode((character.charCodeAt(0) - base + shift + 26) % 26 + base);
+                });
+
+                // Preserve the sentence's original line breaks while the random
+                // letters change; otherwise wider letters can shift or overlap text.
+                characters.forEach((letter) => {
+                    letter.style.width = `${letter.getBoundingClientRect().width}px`;
+                    letter.dataset.scrambled = caesarShift(letter.dataset.character, -12);
+                    letter.classList.remove('is-settled');
+                    letter.textContent = letter.dataset.scrambled;
+                });
+                text.classList.add('is-scrambling');
+
+                const frame = (now) => {
+                    const elapsed = now - started;
+                    const arrangingElapsed = elapsed - scrambleAllWordsFor;
+                    const activeWord = arrangingElapsed < 0 ? -1 : Math.floor(arrangingElapsed / revealWordEvery);
+                    words.forEach((word, index) => {
+                        const isRevealed = activeWord >= 0 && index < activeWord;
+                        const isActivelyArranging = index === activeWord;
+                        word.querySelectorAll('.skills-scramble-char').forEach((letter) => {
+                            letter.classList.toggle('is-settled', isRevealed);
+                            letter.textContent = isRevealed
+                                ? letter.dataset.character
+                                : isActivelyArranging
+                                    ? symbols[Math.floor(Math.random() * symbols.length)]
+                                    : letter.dataset.scrambled;
+                        });
+                    });
+
+                    if (activeWord < words.length) {
+                        requestAnimationFrame(frame);
+                    } else {
+                        text.classList.remove('is-scrambling');
+                    }
+                };
+
+                requestAnimationFrame(frame);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                if (!entries[0].isIntersecting) return;
+                animate();
+                observer.disconnect();
+            }, {
+                // Wait until the text reaches the lower reading area of the screen.
+                threshold: 0,
+                rootMargin: '0px 0px -25% 0px'
+            });
+
+            observer.observe(text);
+
+            const projectCountWord = document.querySelector('#project-count-word');
+            const projectCount = document.querySelectorAll('.project-card-link').length;
+            const numberWords = [
+                'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+                'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen',
+                'seventeen', 'eighteen', 'nineteen'
+            ];
+            const tensWords = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            const projectCountAsWords = projectCount < 20
+                ? numberWords[projectCount]
+                : `${tensWords[Math.floor(projectCount / 10)]}${projectCount % 10 ? `-${numberWords[projectCount % 10]}` : ''}`;
+
+            if (projectCountWord && projectCountAsWords) {
+                projectCountWord.textContent = projectCountAsWords;
+            }
+        })();
+    </script>
 </body>
 </html>
