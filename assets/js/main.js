@@ -310,6 +310,7 @@ const scrollStage = document.querySelector('.scroll-stage');
 
         function hideIntroLoader() {
             if (!introLoader || introLoader.classList.contains('is-hidden')) {
+                document.body.classList.add('hero-character-ready');
                 updateDesktopNavIndicator();
                 desktopNav?.classList.add('is-ready');
                 return;
@@ -318,6 +319,7 @@ const scrollStage = document.querySelector('.scroll-stage');
             window.setTimeout(() => {
                 introLoader.classList.add('is-hidden');
                 document.body.classList.remove('is-loading');
+                document.body.classList.add('hero-character-ready');
 
                 window.setTimeout(() => {
                     updateDesktopNavIndicator();

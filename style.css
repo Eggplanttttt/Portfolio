@@ -963,8 +963,14 @@ body.cursor-pressed .brand-cursor {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    transform: translateX(-30deg);
+    opacity: 0;
+    transform: translateY(130px);
+    will-change: opacity, transform;
     z-index: 4;
+}
+
+body.hero-character-ready .hero-image {
+    animation: heroCharacterRise 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
 }
 
 .hero-photo-stack {
@@ -973,9 +979,15 @@ body.cursor-pressed .brand-cursor {
     left: 54%;
     width: min(58vw, 760px);
     aspect-ratio: 16 / 9;
-    transform: translate(-50%, -50%);
+    opacity: 0;
+    transform: translate(-50%, -44%) scale(0.96);
+    will-change: opacity, transform;
     z-index: 2;
     pointer-events: none;
+}
+
+body.hero-character-ready .hero-photo-stack {
+    animation: heroPhotoPopIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-photo-card {
@@ -1076,6 +1088,30 @@ body.cursor-pressed .brand-cursor {
     width: 100%;
     height: auto;
     display: block;
+}
+
+@keyframes heroCharacterRise {
+    from {
+        opacity: 0;
+        transform: translateY(130px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroPhotoPopIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -44%) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 .scroll-stage {
@@ -2244,6 +2280,37 @@ body.cursor-pressed .brand-cursor {
 
     to {
         transform: translateX(-35%);
+    }
+}
+
+@media (max-height: 700px) and (min-width: 641px) {
+    .works-fold-top,
+    .works-fold-bottom {
+        height: 30vh;
+    }
+
+    .works-fold-center {
+        top: 24vh;
+        height: 52vh;
+    }
+
+    .works-fold-center-content {
+        padding: 1rem 1.5rem;
+    }
+
+    .works-label {
+        margin-bottom: 0.55rem;
+    }
+
+    .works-fold-center-content h2 {
+        font-size: clamp(3.2rem, 8vw, 5.4rem);
+        margin-bottom: 0.6rem;
+    }
+
+    .works-description {
+        max-width: 900px;
+        font-size: clamp(1rem, 1.7vw, 1.25rem);
+        line-height: 1.35;
     }
 }
 
@@ -3511,4 +3578,14 @@ body.cursor-pressed .brand-cursor {
     .projects-toggle {
         margin-top: 2rem;
     }
+}
+
+body:not(.hero-character-ready) .hero-image {
+    opacity: 0;
+    transform: translateY(130px);
+}
+
+body:not(.hero-character-ready) .hero-photo-stack {
+    opacity: 0;
+    transform: translate(-50%, -44%) scale(0.96);
 }
